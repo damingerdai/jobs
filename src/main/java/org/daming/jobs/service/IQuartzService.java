@@ -10,5 +10,4 @@ public interface IQuartzService {
     Trigger getJob(String name, String group) throws SchedulerException;
 
     boolean modifyJob(String name, String group) throws SchedulerException;
-
 }

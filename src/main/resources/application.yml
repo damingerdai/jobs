@@ -2,9 +2,9 @@ server:
   port: 8443
 
 
-application-description: @project.description@
-
-application-version: @project.version@
+#application-description: @project.description@
+#
+#application-version: @project.version@
 
 spring:
   quartz:

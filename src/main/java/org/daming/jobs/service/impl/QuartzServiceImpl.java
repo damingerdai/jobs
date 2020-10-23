@@ -26,14 +26,14 @@ public class QuartzServiceImpl implements IQuartzService {
             Trigger trigger = TriggerBuilder.newTrigger().withIdentity(triggerKey).withSchedule(CronScheduleBuilder.cronSchedule("*/5 * * * * ?")).build();
             scheduler.scheduleJob(jobDetail, trigger);
         } catch (ClassNotFoundException e) {
-            e.printStackTrace();
             throw new SchedulerException(e.getMessage(), e.getCause());
         }
     }
 
     @Override
     public Trigger getJob(String name, String group) throws SchedulerException {
-        return null;
+        var triggerKey = TriggerKey.triggerKey(name, group);
+        return scheduler.getTrigger(triggerKey);
     }
 
     @Override
