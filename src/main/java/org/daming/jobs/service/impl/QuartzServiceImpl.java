@@ -9,6 +9,7 @@ import org.quartz.Scheduler;
 import org.quartz.SchedulerException;
 import org.quartz.Trigger;
 import org.quartz.TriggerBuilder;
+import org.quartz.TriggerKey;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -19,9 +20,10 @@ public class QuartzServiceImpl implements IQuartzService {
     @Override
     public void addJob(String name, String group, String className) throws SchedulerException {
         try {
+            TriggerKey triggerKey = TriggerKey.triggerKey(name, group);
             Class<? extends Job> clazz = (Class<? extends Job>) Class.forName(className);
             JobDetail jobDetail = JobBuilder.newJob(clazz).withIdentity(name, group).build();
-            Trigger trigger = TriggerBuilder.newTrigger().withIdentity(name, group).withSchedule(CronScheduleBuilder.cronSchedule("*/5 * * * * ?")).build();
+            Trigger trigger = TriggerBuilder.newTrigger().withIdentity(triggerKey).withSchedule(CronScheduleBuilder.cronSchedule("*/5 * * * * ?")).build();
             scheduler.scheduleJob(jobDetail, trigger);
         } catch (ClassNotFoundException e) {
             e.printStackTrace();

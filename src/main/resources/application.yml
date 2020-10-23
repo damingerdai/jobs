@@ -1,6 +1,11 @@
 server:
   port: 8443
 
+
+application-description: @project.description@
+
+application-version: @project.version@
+
 spring:
   quartz:
     properties:
@@ -11,18 +16,11 @@ spring:
             instanceId: AUTO
           jobStore:
             class: org.quartz.impl.jdbcjobstore.JobStoreTX
-            driverDelegateClass: org.quartz.impl.jdbcjobstore.StdJDBCDelegate
+            driverDelegateClass: org.quartz.impl.jdbcjobstore.PostgreSQLDelegate
             tablePrefix: QRTZ_
             isClustered: true
-            # dataSource: qzDS
             clusterCheckinInterval: 10000
             useProperties: false
-#          dataSource:
-#            qzDS:
-#              driver: org.postgresql.Driver
-#              url: jdbc:postgresql://127.0.0.1:5432/postgres
-#              username: postgres
-#              password:  12345
           threadPool:
             class: org.quartz.simpl.SimpleThreadPool
             threadCount: 10
