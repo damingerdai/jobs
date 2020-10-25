@@ -24,7 +24,7 @@ public class ApiController {
     @PostMapping(path = "/job")
     public ResponseEntity<Boolean> addJob(@RequestBody AddJobRequest request) {
         try {
-            this.quartzService.addJob(request.getName(), request.getGroup(), "org.daming.jobs.task.HelloTask");
+            this.quartzService.addJob(request.getName(), request.getGroup(), request.getCron(),"org.daming.jobs.task.HelloTask");
             return ResponseEntity.of(Optional.of(true));
         } catch (SchedulerException e) {
             return ResponseEntity.of(Optional.of(false));

@@ -15,6 +15,9 @@ public class AddJobRequest implements Serializable {
     @ApiModelProperty(name = "group name", dataType = "String", required = true, example="group1")
     private String group;
 
+    @ApiModelProperty(name = "job cron name", dataType = "String", required = true, example = "*/5 * * * * ?")
+    private String cron;
+
     public String getName() {
         return name;
     }
@@ -31,13 +34,22 @@ public class AddJobRequest implements Serializable {
         this.group = group;
     }
 
+    public String getCron() {
+        return cron;
+    }
+
+    public void setCron(String cron) {
+        this.cron = cron;
+    }
+
     public AddJobRequest() {
         super();
     }
 
-    public AddJobRequest(String name, String group) {
+    public AddJobRequest(String name, String group, String cron) {
         super();
         this.name = name;
         this.group = group;
+        this.cron = cron;
     }
 }
