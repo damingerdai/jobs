@@ -2,15 +2,14 @@ package org.daming.jobs.web;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.daming.jobs.pojo.JobInfo;
 import org.daming.jobs.pojo.request.AddJobRequest;
 import org.daming.jobs.service.IQuartzService;
 import org.quartz.SchedulerException;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -29,7 +28,17 @@ public class ApiController {
         } catch (SchedulerException e) {
             return ResponseEntity.of(Optional.of(false));
         }
+    }
 
+    @ApiOperation(value = "list job api", notes = "list all quartz job detail")
+    @GetMapping(path = "/jobs")
+    public ResponseEntity<List<JobInfo>> listJobs() {
+        try {
+            var jobs = this.quartzService.listJob();
+            return ResponseEntity.ok(jobs);
+        } catch (SchedulerException e) {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     public ApiController(IQuartzService quartzService) {
