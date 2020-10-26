@@ -36,27 +36,7 @@ class IQuartzServiceTest {
 
     @Test
     public void listJob() throws SchedulerException {
-        for (String groupName : scheduler.getJobGroupNames()) {
-            for (JobKey jobKey : scheduler.getJobKeys(GroupMatcher.jobGroupEquals(groupName))) {
-                String jobName = jobKey.getName();
-                String jobGroup = jobKey.getGroup();
-                //get job's trigger
-                List<Trigger> triggers = (List<Trigger>) scheduler.getTriggersOfJob(jobKey);
-                Date nextFireTime = triggers.get(0).getNextFireTime();
-                var jobDetail = scheduler.getJobDetail(jobKey);
-                System.out.println("[jobName] : " + jobName + " [groupName] : "
-                        + jobGroup + " - " + nextFireTime + jobDetail.getJobClass());
-                triggers.forEach(trigger -> {
-                    try {
-                        var triggerState = scheduler.getTriggerState(trigger.getKey());
-                        System.out.println(triggerState);
-                    } catch (SchedulerException e) {
-                        e.printStackTrace();
-                    }
-                });
-            }
-
-        }
+       this.quartzService.listJob().forEach(System.out::println);
     }
 
 }
