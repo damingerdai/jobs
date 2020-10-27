@@ -34,3 +34,4 @@ build/
 
 ### Others ###
 out/
+src/main/resources/static
