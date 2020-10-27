@@ -10,12 +10,23 @@ module.exports = {
         filename: '[name].[hash].js',
         path: path.resolve(__dirname, '../resources/static')
     },
+    mode: process.env.NODE_ENV === "production" ? "production" : "development",
     module: {
         rules: [
             {
                 test: /\.(js|jsx)$/,
                 use: 'babel-loader',
                 exclude: /node_modules/,
+            },
+            {
+                test: /\.s(a|c)ss$/,
+                use: [{
+                    loader: 'style-loader'
+                }, {
+                    loader: 'css-loader'
+                }, {
+                    loader: 'sass-loader'
+                }],
             }
         ]
     },
@@ -24,7 +35,6 @@ module.exports = {
             template: 'index.html'
         }),
         new CleanWebpackPlugin()
-        // new CleanWebpackPlugin(['../resources/static'])
     ],
     devServer: {
         // contentBase: "build",
