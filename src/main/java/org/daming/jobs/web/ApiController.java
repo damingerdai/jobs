@@ -4,6 +4,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.daming.jobs.pojo.JobInfo;
 import org.daming.jobs.pojo.request.AddJobRequest;
+import org.daming.jobs.pojo.request.DeleteJobRequest;
 import org.daming.jobs.service.IQuartzService;
 import org.quartz.SchedulerException;
 import org.springframework.http.ResponseEntity;
@@ -39,6 +40,18 @@ public class ApiController {
         } catch (SchedulerException e) {
             return ResponseEntity.notFound().build();
         }
+    }
+
+    @ApiOperation(value = "delete job api", notes = "delete a quartz job detail")
+    @DeleteMapping(path = "/job")
+    public  ResponseEntity<Boolean> deleteJob(@RequestBody DeleteJobRequest request) {
+        try {
+            this.quartzService.deleteJob(request.getName(), request.getGroup());
+            return ResponseEntity.of(Optional.of(true));
+        } catch (SchedulerException e) {
+            return ResponseEntity.of(Optional.of(false));
+        }
+
     }
 
     public ApiController(IQuartzService quartzService) {
