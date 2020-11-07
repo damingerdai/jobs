@@ -2,15 +2,22 @@ package org.daming.jobs.service.impl;
 
 import org.daming.jobs.pojo.JobInfo;
 import org.daming.jobs.service.IQuartzService;
-import org.quartz.*;
+import org.quartz.CronScheduleBuilder;
+import org.quartz.CronTrigger;
+import org.quartz.Job;
+import org.quartz.JobBuilder;
+import org.quartz.JobDetail;
+import org.quartz.JobKey;
+import org.quartz.Scheduler;
+import org.quartz.SchedulerException;
+import org.quartz.Trigger;
+import org.quartz.TriggerBuilder;
+import org.quartz.TriggerKey;
 import org.quartz.impl.matchers.GroupMatcher;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.Objects;
-import java.util.stream.Stream;
 
 @Service
 public class QuartzServiceImpl implements IQuartzService {
@@ -31,9 +38,22 @@ public class QuartzServiceImpl implements IQuartzService {
     }
 
     @Override
-    public Trigger getJob(String name, String group) throws SchedulerException {
+    public JobInfo getJob(String name, String group) throws SchedulerException {
         var triggerKey = TriggerKey.triggerKey(name, group);
-        return scheduler.getTrigger(triggerKey);
+        var jobKey =  JobKey.jobKey(name, group);
+        var jobDetail = scheduler.getJobDetail(jobKey);
+        var triggers = scheduler.getTriggersOfJob(jobKey);
+        if (triggers.isEmpty()) {
+            throw new SchedulerException("no trigger");
+        }
+        var trigger = triggers.get(0);
+        var triggerState = scheduler.getTriggerState(trigger.getKey());
+        if (!(trigger instanceof CronTrigger)) {
+            throw new SchedulerException("no cronTrigger");
+        }
+        var cronTrigger = (CronTrigger)trigger;
+        return new JobInfo().setName(name).setGroup(group).setState(triggerState.name()).setCron(cronTrigger.getCronExpression()).setTimezone(cronTrigger.getTimeZone().getID()).setClassName(jobDetail.getJobClass().getName());
+
     }
 
     @Override

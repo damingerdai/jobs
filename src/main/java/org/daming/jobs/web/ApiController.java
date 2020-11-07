@@ -54,6 +54,17 @@ public class ApiController {
 
     }
 
+    @ApiOperation(value = "get job api", notes = "fetch a quartz job detail")
+    @GetMapping(path = "/job")
+    public ResponseEntity<JobInfo> getJob(@RequestParam String job, @RequestParam String group) {
+        try {
+            return ResponseEntity.ok(this.quartzService.getJob(job, group));
+        } catch (SchedulerException e) {
+           // return ResponseEntity.status(404).body(e.getMessage());
+            throw new RuntimeException(e);
+        }
+    }
+
     public ApiController(IQuartzService quartzService) {
         super();
         this.quartzService = quartzService;
