@@ -4,6 +4,8 @@ import java.util.StringJoiner;
 
 public class DamingException extends RuntimeException {
 
+    private static final long serialVersionUID = 7497804251302753765L;
+
     private String code;
 
     private String message;
