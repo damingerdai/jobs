@@ -29,6 +29,7 @@
         <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
             <pattern>%-5p [%d][%mdc{mdc_userId}] %C:%L - %m %n</pattern>
             <charset>utf-8</charset>
+<<<<<<< HEAD
         </encoder>
         <!-- 此日志文件只记录info级别，不记录大于info级别的日志 -->
         <filter class="ch.qos.logback.classic.filter.LevelFilter">
@@ -50,6 +51,8 @@
         <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
             <pattern>%-5p [%d][%mdc{mdc_userId}] %C:%L - %m %n</pattern>
             <charset>utf-8</charset>
+=======
+>>>>>>> 36ba207 (feat: imporve logger based on logback)
         </encoder>
         <!-- 此日志文件只记录info级别，不记录大于info级别的日志 -->
         <filter class="ch.qos.logback.classic.filter.LevelFilter">
@@ -90,14 +93,21 @@
         <appender-ref ref="console"/>
     </root>
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 36ba207 (feat: imporve logger based on logback)
     <logger name="common.logger">
         <appender-ref ref="common.logger"/>
     </logger>
     <logger name="error.logger">
         <appender-ref ref="error.logger"/>
     </logger>
+<<<<<<< HEAD
     <logger name="api.logger">
         <appender-ref ref="api.logger"/>
     </logger>
+=======
+>>>>>>> 36ba207 (feat: imporve logger based on logback)
 
 </configuration>
