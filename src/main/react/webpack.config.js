@@ -8,7 +8,8 @@ module.exports = {
     },
     output: {
         filename: '[name].[hash].js',
-        path: path.resolve(__dirname, '../resources/static')
+        path: path.resolve(__dirname, './dist')
+        // path: path.resolve(__dirname, '../resources/static')
     },
     mode: process.env.NODE_ENV === "production" ? "production" : "development",
     module: {

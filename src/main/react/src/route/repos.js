@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-export class Content extends React.Component {
+export class Repos extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -17,9 +17,6 @@ export class Content extends React.Component {
       return {
         sha: res.sha,
         ...res.commit
-        // message: res.commit.message,
-        // author: res.commit.author,
-        // committer: res.commit.committer
       }
     });
     this.setState({ commits });

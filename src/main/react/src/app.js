@@ -1,19 +1,21 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React from "react";
+import ReactDOM from "react-dom";
+import { BrowserRouter } from "react-router-dom";
+import { PrimaryLayout } from './layout';
 
-import 'core-js';
+import "core-js";
 
-import { Content, Navbar } from './shared';
+import { Navbar } from "./shared";
 
-import './styles.scss';
+import "./styles.scss";
 
 function App() {
-    return (
-      <div>
-        <Navbar brand={'Jobs系统'}/>
-        <Content></Content>
+  return (
+    <div>
+        <Navbar brand={"Jobs系统"} />
+        <PrimaryLayout/>
       </div>
-    );
-  }
+  );
+}
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(<BrowserRouter><App /></BrowserRouter>, document.getElementById("root"));
