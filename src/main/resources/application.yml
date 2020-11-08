@@ -7,6 +7,9 @@ server:
 #application-version: @project.version@
 
 spring:
+  output:
+    ansi:
+      enabled: always
   quartz:
     properties:
       org:

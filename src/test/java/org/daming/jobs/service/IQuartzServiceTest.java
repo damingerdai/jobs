@@ -12,6 +12,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 import java.util.Timer;
 import java.util.concurrent.TimeUnit;
 
@@ -30,8 +31,8 @@ class IQuartzServiceTest {
     public void getJob() throws SchedulerException {
         var name = "job1";
         var group = "group1";
-        var trigger = (CronTrigger) quartzService.getJob(name, group);
-        System.out.println(trigger.getJobKey());
+        var trigger = Optional.ofNullable((CronTrigger) quartzService.getJob(name, group));
+        trigger.ifPresent(System.out::println);
     }
 
     @Test

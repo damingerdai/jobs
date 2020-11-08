@@ -10,7 +10,7 @@ public interface IQuartzService {
 
     void addJob(String name, String group, String cron, String className) throws SchedulerException;
 
-    Trigger getJob(String name, String group) throws SchedulerException;
+    JobInfo getJob(String name, String group) throws SchedulerException;
 
     boolean modifyJob(String name, String group, String cron) throws SchedulerException;
 
