@@ -49,9 +49,9 @@ module.exports = {
         writeToDisk: false,
         transportMode: "ws",
         proxy: {
-            "/proxy": {
-                target: "http://127.0.0.1",
-                pathRewrite: { "^/proxy": "" },
+            "/api": {
+                target: "http://127.0.0.1：8443",
+                // pathRewrite: { "^/proxy": "" },
                 changeOrigin: true
             }
         }

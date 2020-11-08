@@ -12,8 +12,11 @@
   "license": "MIT",
   "dependencies": {
     "bootstrap": "^4.5.3",
+    "core-js": "2",
     "react": "^17.0.1",
-    "react-dom": "^17.0.1"
+    "react-dom": "^17.0.1",
+    "react-router": "^5.2.0",
+    "react-router-dom": "^5.2.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.3",
