@@ -1,18 +1,20 @@
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import ReactDOM from "react-dom";
-import { Route } from "react-router-dom";
-
-import { Repos } from "../route";
+import { Route, Switch } from "react-router-dom";
 
 const HomePage = () => <div>Home Page</div>;
 
-// const ReposPage = () => Repos;
+const ReposPage = lazy(() => import("../route/repos"));
 
 export const PrimaryLayout = () => {
   return (
     <main>
-      <Route path="/" exact component={HomePage} />
-      <Route path="/repos" component={Repos} />
+      <Suspense fallback={<div>Loading...</div>}>
+        <Switch>
+          <Route exact path="/" component={HomePage} />
+          <Route path="/repos" component={ReposPage} />
+        </Switch>
+      </Suspense>
     </main>
   );
 };
