@@ -2,15 +2,20 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const path = require("path");
 
+
 module.exports = {
   entry: {
     app: "./src/app.js",
   },
   output: {
     filename: "[name].[hash].js",
-    chunkFilename: "[name].[hash].js",
+    // chunkFilename: function(pathData) {
+    //   console.log(pathData);
+    //   console.log(arguments[1]);
+    //   return pathData.chunk.name === "main" ? "[name].js" : "[name].[hash].js";
+    // },
+    chunkFilename:'[name].[hash].js',
     path: path.resolve(__dirname, "./dist"),
-    // path: path.resolve(__dirname, '../resources/static')
   },
   mode: process.env.NODE_ENV === "production" ? "production" : "development",
   devtool: "source-map",
@@ -67,6 +72,7 @@ module.exports = {
     splitChunks: {
       minChunks: 2,
       minSize: 10000,
+      chunks: "all",
       cacheGroups: {
         commons: {
           test: /[\\/]node_modules[\\/]/,
@@ -81,6 +87,9 @@ module.exports = {
           reuseExistingChunk: true,
         },
       },
+    },
+    runtimeChunk: {
+      name: "runtime",
     },
   },
 };

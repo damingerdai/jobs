@@ -2,9 +2,9 @@ import React, { lazy, Suspense } from "react";
 import ReactDOM from "react-dom";
 import { Route, Switch } from "react-router-dom";
 
-const HomePage = () => <div>Home Page</div>;
+const HomePage =  lazy(() => import(/* webpackChunkName: "home" */"../route/home"));
 
-const ReposPage = lazy(() => import("../route/repos"));
+const ReposPage = lazy(() => import(/* webpackChunkName: "repos" */"../route/repos"));
 
 export const PrimaryLayout = () => {
   return (
