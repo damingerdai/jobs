@@ -15,6 +15,7 @@ public class ApiError implements Serializable {
         return code;
     }
 
+
     public ApiError setCode(String code) {
         this.code = code;
         return this;

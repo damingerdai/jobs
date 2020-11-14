@@ -34,6 +34,7 @@ build/
 .vscode/
 
 ### Others ###
+bin/
 out/
 src/main/resources/static
 logs
