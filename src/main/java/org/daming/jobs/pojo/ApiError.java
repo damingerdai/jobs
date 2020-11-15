@@ -15,16 +15,18 @@ public class ApiError implements Serializable {
         return code;
     }
 
-    public void setCode(String code) {
+    public ApiError setCode(String code) {
         this.code = code;
+        return this;
     }
 
     public String getMessage() {
         return message;
     }
 
-    public void setMessage(String message) {
+    public ApiError setMessage(String message) {
         this.message = message;
+        return this;
     }
 
     public ApiError(String code, String message) {
