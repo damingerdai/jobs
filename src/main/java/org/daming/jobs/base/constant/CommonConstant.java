@@ -10,6 +10,7 @@ public class CommonConstant {
 
     public static final String ERROR_LOGGER = "error.logger";
 
-    @Deprecated
     public static final String JDBC_LOGGER = "jdbc.logger";
+
+    public static final String API_LOGGER = "api.logger";
 }
