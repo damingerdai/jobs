@@ -1,4 +1,4 @@
-package org.daming.jobs.web;
+package org.daming.jobs.api.controller;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
