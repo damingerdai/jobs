@@ -18,6 +18,10 @@ public class LoggerManager {
         return getLogger(CommonConstant.ERROR_LOGGER);
     }
 
+    public static DamingLogger getApiLogger() {
+        return getLogger(CommonConstant.API_LOGGER);
+    }
+
     public static DamingLogger getLogger(String loggerName) {
         return cache.computeIfAbsent(loggerName, LoggerManager::buildLogger);
     }
