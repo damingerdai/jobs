@@ -38,7 +38,7 @@ class IQuartzServiceTest {
     }
 
     @Test
-    @Disabled
+    //@Disabled
     public void listJob() throws SchedulerException {
        this.quartzService.listJob().forEach(System.out::println);
     }
