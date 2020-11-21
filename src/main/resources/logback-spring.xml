@@ -90,30 +90,19 @@
         <appender-ref ref="console"/>
     </root>
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-
->>>>>>> 36ba207 (feat: imporve logger based on logback)
-=======
->>>>>>> 617a23b (feat: add api logger)
     <logger name="common.logger">
         <appender-ref ref="common.logger"/>
     </logger>
     <logger name="error.logger">
         <appender-ref ref="error.logger"/>
     </logger>
-<<<<<<< HEAD
-<<<<<<< HEAD
+
     <logger name="api.logger">
         <appender-ref ref="api.logger"/>
     </logger>
-=======
->>>>>>> 36ba207 (feat: imporve logger based on logback)
-=======
+
     <logger name="api.logger">
         <appender-ref ref="api.logger"/>
     </logger>
->>>>>>> 617a23b (feat: add api logger)
 
 </configuration>
