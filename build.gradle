@@ -4,6 +4,9 @@ plugins {
 	id 'java'
 }
 
+apply plugin: 'java'
+apply plugin: 'io.spring.dependency-management'
+
 group = 'org.daming'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '14'
@@ -33,4 +36,8 @@ dependencies {
 
 test {
 	useJUnitPlatform()
+}
+
+springBoot  {
+	mainClass = 'org.daming.jobs.JobsApplication'
 }
