@@ -3,13 +3,13 @@
   "version": "0.0.0",
   "description": "a portal application for jobs",
   "main": "index.js",
-  "scripts": {
-    "build": "webpack",
-    "start": "webpack serve --mode development",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "author": "damingerdai",
   "license": "MIT",
+  "scripts": {
+    "build": "rm -f -r dist && cross-env NODE_ENV=production webpack",
+    "start": "webpack serve --mode development",
+    "test": "jest ./test"
+  },
   "dependencies": {
     "bootstrap": "^4.5.3",
     "core-js": "2",
@@ -22,15 +22,25 @@
     "@babel/core": "^7.12.3",
     "@babel/preset-env": "^7.12.1",
     "@babel/preset-react": "^7.12.1",
+    "@types/react": "^17.0.27",
+    "@types/react-dom": "^17.0.9",
+    "@types/react-router-dom": "^5.3.1",
     "babel-loader": "^8.1.0",
     "clean-webpack-plugin": "^3.0.0",
+    "cross-env": "^7.0.2",
     "css-loader": "^5.0.0",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.5",
     "html-webpack-plugin": "^4.5.0",
+    "jest": "^26.6.1",
+    "react-test-renderer": "^17.0.1",
     "sass": "^1.27.0",
     "sass-loader": "^10.0.4",
     "style-loader": "^2.0.0",
-    "webpack": "^5.3.0",
-    "webpack-cli": "^4.1.0",
+    "ts-loader": "^9.2.6",
+    "typescript": "^4.4.3",
+    "webpack": "^5.58.1",
+    "webpack-cli": "^4.9.0",
     "webpack-dev-server": "^3.11.0"
   }
 }
