@@ -1,5 +1,6 @@
 package org.daming.jobs.service;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.quartz.CronTrigger;
 import org.quartz.JobKey;
@@ -28,6 +29,7 @@ class IQuartzServiceTest {
     private IQuartzService quartzService;
 
     @Test
+    @Disabled
     public void getJob() throws SchedulerException {
         var name = "job1";
         var group = "group1";
@@ -36,6 +38,7 @@ class IQuartzServiceTest {
     }
 
     @Test
+    //@Disabled
     public void listJob() throws SchedulerException {
        this.quartzService.listJob().forEach(System.out::println);
     }

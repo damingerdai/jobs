@@ -37,3 +37,9 @@ spring:
     driver-class-name: org.postgresql.Driver
   flyway:
     baseline-on-migrate: true
+
+#TOKEN_TTL
+token:
+  ttl:
+    accessTokenTTL: 7200000
+    refreshTokenTTL: 28800000
