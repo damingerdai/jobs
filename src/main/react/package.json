@@ -6,14 +6,17 @@
   "author": "damingerdai",
   "license": "MIT",
   "scripts": {
-    "build": "webpack",
+    "build": "rm -f -r dist && cross-env NODE_ENV=production webpack",
     "start": "webpack serve --mode development",
     "test": "jest ./test"
   },
   "dependencies": {
     "bootstrap": "^4.5.3",
-    "react": "^16.14.0",
-    "react-dom": "^16.14.0"
+    "core-js": "2",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "react-router": "^5.2.0",
+    "react-router-dom": "^5.2.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.3",
@@ -21,6 +24,7 @@
     "@babel/preset-react": "^7.12.1",
     "babel-loader": "^8.1.0",
     "clean-webpack-plugin": "^3.0.0",
+    "cross-env": "^7.0.2",
     "css-loader": "^5.0.0",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.5",

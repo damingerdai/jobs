@@ -1,11 +1,21 @@
-import React from 'react'
+import React from "react";
+import ReactDOM from "react-dom";
+import { BrowserRouter } from "react-router-dom";
+import { PrimaryLayout } from './layout';
 
-export class App extends React.Component {
-  render() {
-    return (
-      <div>
-        <h1>Welcome to My Starter App</h1>
+import "core-js";
+
+import { Navbar } from "./shared";
+
+import "./styles.scss";
+
+function App() {
+  return (
+    <div>
+        <Navbar brand={"Jobs系统"} />
+        <PrimaryLayout/>
       </div>
-    )
-  }
+  );
 }
+
+ReactDOM.render(<BrowserRouter><App /></BrowserRouter>, document.getElementById("root"));
