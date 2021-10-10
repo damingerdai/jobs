@@ -2,8 +2,12 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { NavLink } from "react-router-dom";
 
-export class Navbar extends React.Component {
-  constructor(props) {
+interface NavbarProps {
+  brand: string,
+}
+
+export class Navbar extends React.Component<NavbarProps> {
+  constructor(props: NavbarProps) {
     super(props);
   }
 

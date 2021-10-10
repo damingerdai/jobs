@@ -1,8 +1,22 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-class Repos extends React.Component {
-  constructor(props) {
+interface ReposState {
+  commits: {
+    sha: string,
+    message: string,
+    author: {
+      name: string,
+      date: string,
+    },
+    committer: {
+      name: string
+    }
+  }[],
+} 
+
+class Repos extends React.Component<any, ReposState> {
+  constructor(props: any) {
     super(props);
     this.state = {
       commits: [],
@@ -13,7 +27,7 @@ class Repos extends React.Component {
     const url =
       "https://api.github.com/repos/javascript-tutorial/en.javascript.info/commits";
     const response = await (await fetch(url)).json();
-    const commits = response.map((res) => {
+    const commits = response.map((res: { sha: any; commit: any; }) => {
       return {
         sha: res.sha,
         ...res.commit

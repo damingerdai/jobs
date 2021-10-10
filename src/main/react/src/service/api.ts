@@ -1,6 +1,6 @@
 export const Aip = {
 
-    get: (url) => {
+    get: (url: string) => {
         
     }
 }
