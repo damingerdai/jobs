@@ -5,7 +5,7 @@ const path = require("path");
 
 module.exports = {
   entry: {
-    app: "./src/app.js",
+    app: "./src/app.tsx",
   },
   output: {
     filename: "[name].[hash].js",
@@ -21,6 +21,11 @@ module.exports = {
   devtool: "source-map",
   module: {
     rules: [
+      {
+        test: /\.tsx?$/,
+        use: 'ts-loader',
+        exclude: /node_modules/,
+      },
       {
         test: /\.(js|jsx)$/,
         use: "babel-loader",
@@ -41,6 +46,9 @@ module.exports = {
         ],
       },
     ],
+  },
+  resolve: {
+    extensions: ['.tsx', '.ts', '.js'],
   },
   plugins: [
     new HtmlWebPackPlugin({
