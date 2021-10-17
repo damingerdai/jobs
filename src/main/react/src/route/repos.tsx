@@ -15,7 +15,7 @@ interface ReposState {
   }[],
 } 
 
-class Repos extends React.Component<any, ReposState> {
+export default class Repos extends React.Component<any, ReposState> {
   constructor(props: any) {
     super(props);
     this.state = {
@@ -68,5 +68,3 @@ class Repos extends React.Component<any, ReposState> {
     );
   }
 }
-
-export default Repos;

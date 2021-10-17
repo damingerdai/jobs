@@ -1,10 +1,10 @@
-import React from "react";
-import ReactDOM from "react-dom";
+import Button from '@mui/material/Button';
+import React from 'react';
+import ReactDOM from 'react-dom';
 
-export function Home() {
+
+export default function Home() {
     return (
-        <div>Home</div>
-    )
+        <Button variant="contained">你好，世界</Button>
+    );
 }
-
-export default Home;

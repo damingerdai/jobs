@@ -8,14 +8,15 @@ module.exports = {
     app: "./src/app.tsx",
   },
   output: {
-    filename: "[name].[hash].js",
-    // chunkFilename: function(pathData) {
-    //   console.log(pathData);
-    //   console.log(arguments[1]);
-    //   return pathData.chunk.name === "main" ? "[name].js" : "[name].[hash].js";
-    // },
+    filename: "[name].[chunkhash].js",
+    chunkFilename: function(pathData) {
+      return pathData.chunk.name === "main" ? "[name].js" : "[name].[chunkhash].js";
+    },
     chunkFilename:'[name].[hash].js',
     path: path.resolve(__dirname, "./dist"),
+  },
+  optimization: {
+    runtimeChunk: 'single',
   },
   mode: process.env.NODE_ENV === "production" ? "production" : "development",
   devtool: "source-map",
@@ -58,6 +59,7 @@ module.exports = {
   ],
   devServer: {
     // contentBase: "build",
+    port: 3000,
     index: "index.html",
     open: true,
     openPage: "",

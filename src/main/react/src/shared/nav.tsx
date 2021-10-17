@@ -1,6 +1,10 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import { NavLink } from "react-router-dom";
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
+import React from 'react';
+import { Link as RouterLink } from 'react-router-dom';
 
 interface NavbarProps {
   brand: string,
@@ -13,19 +17,16 @@ export class Navbar extends React.Component<NavbarProps> {
 
   render() {
     return (
-      <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
-        <a className="navbar-brand">{this.props.brand || "Jobs"}</a>
-        <NavLink activeClassName="active" className="navbar-nav mr-aut" to="/">
-          <span className="nav-link">Home</span>
-        </NavLink>
-        <NavLink
-          activeClassName="active"
-          className="navbar-nav mr-aut"
-          to="/repos"
-        >
-          <span className="nav-link">Repos</span>
-        </NavLink>
-      </nav>
+      <Box sx={{ flexGrow: 1 }}>
+        <AppBar position="static">
+          <Toolbar>
+            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>{this.props.brand}</Typography>
+            <Button component={RouterLink} to="/" color="inherit" >Home</Button>
+            <Button component={RouterLink} to="/repos" color="inherit" >Repos</Button>
+            <Button color="inherit">Login</Button>
+          </Toolbar>
+        </AppBar>
+      </Box>
     );
   }
 }
