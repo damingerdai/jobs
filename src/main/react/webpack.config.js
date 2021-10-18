@@ -5,14 +5,12 @@ const path = require("path");
 
 module.exports = {
   entry: {
-    app: "./src/app.tsx",
+    main: path.resolve(__dirname, "./src/app.tsx"),
+    polyfills: path.resolve(__dirname, "./src/polyfills.ts"),
   },
   output: {
     filename: "[name].[chunkhash].js",
-    chunkFilename: function(pathData) {
-      return pathData.chunk.name === "main" ? "[name].js" : "[name].[chunkhash].js";
-    },
-    chunkFilename:'[name].[hash].js',
+    chunkFilename:'[name].[hash].chunk.js',
     path: path.resolve(__dirname, "./dist"),
   },
   optimization: {
@@ -23,13 +21,12 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.tsx?$/,
-        use: 'ts-loader',
-        exclude: /node_modules/,
-      },
-      {
-        test: /\.(js|jsx)$/,
-        use: "babel-loader",
+        test: /\.(js|jsx|ts|tsx)$/,
+        use: [
+          {
+            loader: 'babel-loader',
+          }
+        ],
         exclude: /node_modules/,
       },
       {
@@ -80,23 +77,8 @@ module.exports = {
   },
   optimization: {
     splitChunks: {
-      minChunks: 2,
-      minSize: 10000,
+      name: 'vendors',
       chunks: "all",
-      cacheGroups: {
-        commons: {
-          test: /[\\/]node_modules[\\/]/,
-          name: "vendors",
-          chunks: "all",
-          priority: -10,
-          minChunks: 2,
-        },
-        default: {
-          name: "main",
-          priority: -20,
-          reuseExistingChunk: true,
-        },
-      },
     },
     runtimeChunk: {
       name: "runtime",
