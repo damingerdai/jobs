@@ -1,6 +1,7 @@
 plugins {
 	id 'org.springframework.boot' version '2.5.5'
 	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+	id 'org.flywaydb.flyway' version '8.0.1'
 	id 'java'
 }
 
@@ -33,6 +34,13 @@ dependencies {
 
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
+
+flyway {
+	url = 'jdbc:postgresql://127.0.0.1:5432/postgres'
+	user = 'postgres'
+	password = '123456'
+}
+
 
 test {
 	useJUnitPlatform()
