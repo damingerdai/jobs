@@ -33,7 +33,7 @@ spring:
   datasource:
     url: jdbc:postgresql://127.0.0.1:5432/postgres
     username: postgres
-    password:  12345
+    password:  123456
     driver-class-name: org.postgresql.Driver
   flyway:
     baseline-on-migrate: true

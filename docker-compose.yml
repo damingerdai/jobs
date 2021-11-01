@@ -9,7 +9,7 @@ services:
       # - ./init.sql:/docker-entrypoint-initdb.d/init.sql
     environment:
       POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: 12345
+      POSTGRES_PASSWORD: 123456
       POSTGRES_DB: postgres
     networks:
       - daming-jobs
