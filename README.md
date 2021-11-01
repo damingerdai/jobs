@@ -16,5 +16,5 @@ docker-compose up db
 ```
 
 ```shell script
-mvn flyway:migrate
+gradle flywayMigrate
 ```
