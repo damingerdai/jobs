@@ -20,3 +20,7 @@ docker-compose up db
 ```shell script
 gradle flywayMigrate
 ```
+
+## Swagger UI
+
+`jobs` support [swagger ui](http://127.0.0.1:8443/swagger-ui/index.html).
