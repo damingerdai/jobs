@@ -23,7 +23,7 @@ export class Navbar extends React.Component<NavbarProps> {
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>{this.props.brand}</Typography>
             <Button component={RouterLink} to="/" color="inherit" >Home</Button>
             <Button component={RouterLink} to="/repos" color="inherit" >Repos</Button>
-            <Button color="inherit">Login</Button>
+            <Button component={RouterLink} to="/login" color="inherit">Login</Button>
           </Toolbar>
         </AppBar>
       </Box>

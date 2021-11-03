@@ -7,6 +7,10 @@ export const ROUTES: Routers = [
         component: React.lazy(() => import("./home"))
     },
     {
+        path: '/login',
+        component: React.lazy(() => import("./login"))
+    },
+    {
         path: '/repos',
         component: React.lazy(() => import("./repos"))
     }

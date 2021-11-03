@@ -10,7 +10,7 @@ import "./styles.scss";
 function App() {
   return (
     <div>
-        <Navbar brand={"Jobs系统"} />
+        <Navbar brand={"Jobs UI"} />
         <PrimaryLayout/>
       </div>
   );

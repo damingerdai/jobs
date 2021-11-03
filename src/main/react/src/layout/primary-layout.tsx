@@ -7,7 +7,7 @@ export const PrimaryLayout = () => {
     <main>
       <Suspense fallback={<div>Loading...</div>}>
         <Switch>
-          {ROUTES.map((route) => <Route exact path={route.path} component={route.component} />)}
+          {ROUTES.map((route) => <Route key={route.path} exact path={route.path} component={route.component} />)}
         </Switch>
       </Suspense>
     </main>
