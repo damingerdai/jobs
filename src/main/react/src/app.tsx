@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
 import { PrimaryLayout } from './layout';
 
-import { Navbar } from "./shared";
+import { Navbar } from "./components";
 
 import "./styles.scss";
 
