@@ -147,6 +147,7 @@ const Home: React.FC = () => {
               <TableCell align="left">Group</TableCell>
               <TableCell align="left">State</TableCell>
               <TableCell align="left">TimeZone</TableCell>
+              <TableCell align="left">Action</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -155,13 +156,19 @@ const Home: React.FC = () => {
                 key={job.name}
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
               >
-                <TableCell component="th" scope="row">{i + 1}</TableCell>
+                <TableCell component="th" scope="row">
+                  {i + 1}
+                </TableCell>
                 <TableCell align="left">{job.name}</TableCell>
                 <TableCell align="left">{job.className}</TableCell>
                 <TableCell align="left">{job.cron}</TableCell>
                 <TableCell align="left">{job.group}</TableCell>
                 <TableCell align="left">{job.state}</TableCell>
                 <TableCell align="left">{job.timezone}</TableCell>
+                <TableCell align="left">
+                  <Button variant="contained" color="warning">Pause</Button>
+                  <Button variant="contained" color="error">Delete</Button>
+                </TableCell>
               </TableRow>
             ))}
           </TableBody>
