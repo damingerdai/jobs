@@ -141,12 +141,12 @@ const Home: React.FC = () => {
           <TableHead>
             <TableRow>
               <TableCell>#</TableCell>
-              <TableCell align="right">Name</TableCell>
-              <TableCell align="right">Class Name</TableCell>
-              <TableCell align="right">Cron</TableCell>
-              <TableCell align="right">Group</TableCell>
-              <TableCell align="right">State</TableCell>
-              <TableCell align="right">TimeZone</TableCell>
+              <TableCell align="left">Name</TableCell>
+              <TableCell align="left">Class Name</TableCell>
+              <TableCell align="left">Cron</TableCell>
+              <TableCell align="left">Group</TableCell>
+              <TableCell align="left">State</TableCell>
+              <TableCell align="left">TimeZone</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -156,12 +156,12 @@ const Home: React.FC = () => {
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
               >
                 <TableCell component="th" scope="row">{i + 1}</TableCell>
-                <TableCell align="right">{job.name}</TableCell>
-                <TableCell align="right">{job.className}</TableCell>
-                <TableCell align="right">{job.cron}</TableCell>
-                <TableCell align="right">{job.group}</TableCell>
-                <TableCell align="right">{job.state}</TableCell>
-                <TableCell align="right">{job.timezone}</TableCell>
+                <TableCell align="left">{job.name}</TableCell>
+                <TableCell align="left">{job.className}</TableCell>
+                <TableCell align="left">{job.cron}</TableCell>
+                <TableCell align="left">{job.group}</TableCell>
+                <TableCell align="left">{job.state}</TableCell>
+                <TableCell align="left">{job.timezone}</TableCell>
               </TableRow>
             ))}
           </TableBody>
