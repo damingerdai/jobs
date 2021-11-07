@@ -14,6 +14,6 @@ public class HelloTask implements Job {
     public void execute(JobExecutionContext context) throws JobExecutionException {
        //  var dataMap = context.getJobDetail().getJobDataMap();
         var name = "damingerdai";
-        System.out.println("hello " + name);
+        System.out.println("hello " + name + "\t" + System.currentTimeMillis());
     }
 }
