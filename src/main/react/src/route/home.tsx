@@ -67,7 +67,7 @@ const Home: React.FC = () => {
 
   return (
     <Container component="main" maxWidth="lg">
-      <Box marginTop="20px">
+      <Box paddingTop="20px">
         <Button
           variant="contained"
           onClick={() => {
