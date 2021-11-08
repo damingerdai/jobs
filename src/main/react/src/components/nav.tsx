@@ -10,23 +10,20 @@ interface NavbarProps {
   brand: string,
 }
 
-export class Navbar extends React.Component<NavbarProps> {
-  constructor(props: NavbarProps) {
-    super(props);
-  }
-
-  render() {
-    return (
-      <Box sx={{ flexGrow: 1 }}>
-        <AppBar position="static">
-          <Toolbar>
-            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>{this.props.brand}</Typography>
-            <Button component={RouterLink} to="/" color="inherit" >Home</Button>
-            <Button component={RouterLink} to="/repos" color="inherit" >Repos</Button>
-            <Button component={RouterLink} to="/login" color="inherit">Login</Button>
-          </Toolbar>
-        </AppBar>
-      </Box>
-    );
-  }
+const Navbar: React.FC<NavbarProps> = (props) => {
+  return (
+    <Box sx={{ flexGrow: 1 }}>
+      <AppBar position="static">
+        <Toolbar>
+          <Typography variant="h6" component="div" >{props.brand}</Typography>
+          <Button component={RouterLink} to="/" color="inherit" >Home</Button>
+          <Button component={RouterLink} to="/repos" color="inherit" >Repos</Button>
+          <Box sx={{ flexGrow: 1 }}/> 
+          <Button component={RouterLink} to="/login" color="inherit">Login</Button>
+        </Toolbar>
+      </AppBar>
+    </Box>
+  )
 }
+
+export default Navbar;

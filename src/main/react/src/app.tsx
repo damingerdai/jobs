@@ -3,16 +3,16 @@ import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
 import { PrimaryLayout } from './layout';
 
-import { Navbar } from "./components";
+import  Navbar  from "./components/nav";
 
 import "./styles.scss";
 
 function App() {
   return (
-    <div>
-        <Navbar brand={"Jobs UI"} />
-        <PrimaryLayout/>
-      </div>
+    <React.Fragment>
+      <Navbar brand={"Jobs UI"} />
+      <PrimaryLayout />
+    </React.Fragment>
   );
 }
 
