@@ -1,11 +1,13 @@
 import Box from '@mui/material/Box';
+
 import React, { Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
-import { ROUTES } from "../route";
+
+import { ROUTES } from "../pages";
 
 
 export const PrimaryLayout = () => {
-
+  
   return (
     <Box component="div">
       <Suspense fallback={<div>Loading...</div>}>

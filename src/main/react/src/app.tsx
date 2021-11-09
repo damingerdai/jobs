@@ -1,7 +1,11 @@
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+
 import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
+import { Provider, useSelector } from 'react-redux';
 import { BrowserRouter } from "react-router-dom";
+
+import { store, RootState } from './slices/store';
 import { PrimaryLayout } from './layout';
 import Navbar from "./components/nav";
 
@@ -13,9 +17,9 @@ function App() {
   const [theme, setTheme] = useState(Theme);
 
   return (
-    <React.Fragment>
+    <Provider store={store}>
       <ThemeProvider theme={theme}>
-        <Navbar brand={"Jobs UI"} toggleMode={(mode) => {
+      <Navbar brand={"Jobs UI"} toggleMode={(mode) => {
           const newTheme = createTheme({
             palette: {
               mode
@@ -27,7 +31,7 @@ function App() {
         }} />
         <PrimaryLayout />
       </ThemeProvider>
-    </React.Fragment>
+    </Provider>
   );
 }
 
