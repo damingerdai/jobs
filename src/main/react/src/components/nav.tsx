@@ -7,8 +7,12 @@ import IconButton from '@mui/material/IconButton';
 import LightModeRoundedIcon from '@mui/icons-material/LightModeRounded';
 import NightlightRoundedIcon from '@mui/icons-material/NightlightRounded';
 
-import React, { useState } from 'react';
+import React from 'react';
 import { Link as RouterLink } from 'react-router-dom';
+
+import { useSelector, useDispatch } from 'react-redux'
+import { RootState } from '../slices/store';
+import { toggleMode } from '../slices/theme';
 
 interface NavbarProps {
   brand: string,
@@ -16,12 +20,8 @@ interface NavbarProps {
 }
 
 const Navbar: React.FC<NavbarProps> = (props) => {
-  const [mode, setMode] = useState('light');
-
-  const toggleMode = (mode: 'light' | 'dark') => {
-    setMode(mode);
-    props.toggleMode(mode)
-  }
+  const mode = useSelector((state: RootState) => state.theme.mode);
+  const dispatch = useDispatch()
 
   return (
     <Box sx={{ flexGrow: 1 }} color="primary">
@@ -31,10 +31,16 @@ const Navbar: React.FC<NavbarProps> = (props) => {
           <Button component={RouterLink} to="/" color="inherit" >Home</Button>
           <Button component={RouterLink} to="/repos" color="inherit" >Repos</Button>
           <Box component="div" sx={{ flexGrow: 1 }} />
-          {mode === 'light' && <IconButton aria-label="theme" color="inherit" onClick={() => toggleMode('dark')}>
+          {mode === 'light' && <IconButton aria-label="theme" color="inherit" onClick={() => {
+            props.toggleMode('dark');
+            dispatch(toggleMode('dark'));
+          }}>
             <LightModeRoundedIcon />
           </IconButton>}
-          {mode === 'dark' && <IconButton aria-label="theme" color="inherit" onClick={() => toggleMode('light')}>
+          {mode === 'dark' && <IconButton aria-label="theme" color="inherit" onClick={() => {
+            props.toggleMode('light')
+            dispatch(toggleMode('light'));
+          }}>
             <NightlightRoundedIcon />
           </IconButton>}
           <Button component={RouterLink} to="/login" color="inherit">Login</Button>
