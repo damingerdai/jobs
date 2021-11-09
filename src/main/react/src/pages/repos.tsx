@@ -24,8 +24,7 @@ export default class Repos extends React.Component<any, ReposState> {
   }
 
   async componentDidMount() {
-    const url =
-      "https://api.github.com/repos/javascript-tutorial/en.javascript.info/commits";
+    const url = "/api/v1/repos/commits";
     const response = await (await fetch(url)).json();
     const commits = response.map((res: { sha: any; commit: any; }) => {
       return {
