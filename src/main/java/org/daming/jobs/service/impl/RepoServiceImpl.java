@@ -35,6 +35,7 @@ public class RepoServiceImpl implements IRepoService {
                 .timeout(Duration.ofMinutes(1))
                 .build();
         var response = client.send(request, HttpResponse.BodyHandlers.ofString());
+        System.out.println(response.body());
         return response.body();
     }
 

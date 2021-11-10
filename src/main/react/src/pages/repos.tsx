@@ -1,69 +1,73 @@
-import React from "react";
-import ReactDOM from "react-dom";
+import React, { useEffect, useState } from "react";
+import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 
-interface ReposState {
-  commits: {
-    sha: string,
-    message: string,
-    author: {
-      name: string,
-      date: string,
-    },
-    committer: {
-      name: string
-    }
-  }[],
-} 
+import Container from "@mui/material/Container";
+import TableContainer from "@mui/material/TableContainer";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import Paper from "@mui/material/Paper";
 
-export default class Repos extends React.Component<any, ReposState> {
-  constructor(props: any) {
-    super(props);
-    this.state = {
-      commits: [],
-    };
-  }
-
-  async componentDidMount() {
-    const url = "/api/v1/repos/commits";
-    const response = await (await fetch(url)).json();
-    const commits = response.map((res: { sha: any; commit: any; }) => {
-      return {
-        sha: res.sha,
-        ...res.commit
-      }
-    });
-    this.setState({ commits });
-  }
-
-  render() {
-    return (
-      <div className="container">
-        <table className="table">
-          <thead>
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">Message</th>
-              <th scope="col">Author</th>
-              <th scope="col">Committer</th>
-              <th scope="col">Date</th>
-            </tr>
-          </thead>
-          <tbody>
-            {this.state.commits.map((commit, i) => {
-              // console.log(commit);
-              return (
-                <tr key={commit.sha}>
-                  <th scope="row">{i + 1}</th>
-                  <td>{commit.message}</td>
-                  <td>{commit.author.name}</td>
-                  <td>{commit.committer.name}</td>
-                  <td>{commit.author.date}</td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
-      </div>
-    );
+import { fetchCommits } from '../slices/repos';
+import type { AppDispatch, RootState } from "../slices/store";
+interface ReposCommit {
+  sha: string,
+  message: string,
+  author: {
+    name: string,
+    date: string,
+  },
+  committer: {
+    name: string
   }
 }
+
+const useAppDispatch = () => useDispatch<AppDispatch>();
+const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
+
+const Repos = () => {
+  const dispatch = useAppDispatch();
+  const { commits } = useAppSelector(state => state.repos) as { commits: ReposCommit[] };
+  useEffect(() => {
+    dispatch(fetchCommits());
+  }, [dispatch])
+
+  return (
+    <Container component="div" maxWidth="lg">
+      <TableContainer component={Paper}>
+        <Table sx={{ minWidth: 650 }} aria-label="repos commits tables">
+          <TableHead>
+            <TableRow>
+              <TableCell># </TableCell>
+              <TableCell align="left">Message</TableCell>
+              <TableCell align="left">Author</TableCell>
+              <TableCell align="left">Committer</TableCell>
+              <TableCell align="left">Sha</TableCell>
+              <TableCell align="left">Date</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {commits.map((commit, i) => (
+              <TableRow
+                key={commit.sha}
+                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+              >
+                <TableCell component="th" scope="row">
+                  {i + 1}
+                </TableCell>
+                <TableCell align="left">{commit.message}</TableCell>
+                <TableCell align="left">{commit.author.name}</TableCell>
+                <TableCell align="left">{commit.committer.name}</TableCell>
+                <TableCell align="left">{commit.sha}</TableCell>
+                <TableCell align="left">{commit.author.date}</TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+    </Container>
+  )
+}
+export default Repos;

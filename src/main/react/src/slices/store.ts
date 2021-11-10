@@ -1,9 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
+
+import { reposReducer } from './repos';
 import themeReducer from './theme';
 
 export const store = configureStore({
     reducer: {
         theme: themeReducer,
+        repos: reposReducer
     },
 })
 
