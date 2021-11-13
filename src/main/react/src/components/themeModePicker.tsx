@@ -18,6 +18,6 @@ export const ThemeModePicker: React.FC<themeModePickerProps> = (props) => {
     } else if (mode === 'light') {
         return <IconButton aria-label="theme" color="inherit" onClick={() => modeChange('dark')}><LightModeRoundedIcon/></IconButton>
     } else {
-        return never;
+        return null;
     }
 }
