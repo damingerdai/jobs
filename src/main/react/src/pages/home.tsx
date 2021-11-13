@@ -14,6 +14,7 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import TextField from "@mui/material/TextField";
 import Paper from "@mui/material/Paper";
+import { api } from "../service/api";
 
 interface IJob {
   className: string;
@@ -26,7 +27,7 @@ interface IJob {
 
 type Jobs = IJob[];
 
-const Home: React.FC = () => {
+const Home = () => {
   const [job, setJob] = useState({} as Partial<IJob>);
   const [open, setOpen] = useState(false);
   const [jobs, setJobs] = useState([] as Jobs);
@@ -36,32 +37,14 @@ const Home: React.FC = () => {
   }, []);
 
   const fetchAllJobs = () => {
-    fetch("api/v1/jobs")
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        } else {
-          return [];
-        }
-      })
-      .then((jobs) => {
-        setJobs(jobs);
-      });
+    api.get<Jobs>('api/v1/jobs').then((jobs) => setJobs(jobs));
   };
 
   const createJob = (e?: any) => {
-    fetch("api/v1/job", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(job),
-    })
-      .then((response) => response.json())
-      .then((res) => {
-        setOpen(false);
-        fetchAllJobs();
-      });
+    api.post('api/v1/job', job).then((res) => {
+      setOpen(false);
+      fetchAllJobs();
+    });
   };
 
   return (
@@ -167,7 +150,7 @@ const Home: React.FC = () => {
                 <TableCell align="left">
                   <Button variant="contained" color="warning">Pause</Button>
                   <Button variant="contained" color="error" onClick={() => {
-                    
+
                   }}>Delete</Button>
                 </TableCell>
               </TableRow>
