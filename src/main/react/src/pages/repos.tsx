@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
 
 import Container from "@mui/material/Container";
 import TableContainer from "@mui/material/TableContainer";
@@ -11,25 +10,11 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 
 import { fetchCommits } from '../slices/repos';
-import type { AppDispatch, RootState } from "../slices/store";
-interface ReposCommit {
-  sha: string,
-  message: string,
-  author: {
-    name: string,
-    date: string,
-  },
-  committer: {
-    name: string
-  }
-}
-
-const useAppDispatch = () => useDispatch<AppDispatch>();
-const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
+import { useAppDispatch, useAppSelector } from "../slices/hook";
 
 const Repos = () => {
   const dispatch = useAppDispatch();
-  const { commits } = useAppSelector(state => state.repos) as { commits: ReposCommit[] };
+  const { commits } = useAppSelector(state => state.repos);
   useEffect(() => {
     dispatch(fetchCommits());
   }, [dispatch])
@@ -49,7 +34,7 @@ const Repos = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {commits.map((commit, i) => (
+            {commits!.length > 0 && commits!.map((commit, i) => (
               <TableRow
                 key={commit.sha}
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}

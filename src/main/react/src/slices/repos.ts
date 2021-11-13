@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { ReposCommits } from './../types/respo';
 
 export const fetchCommits = createAsyncThunk(
     'repos/fetchCommits',
@@ -15,8 +16,12 @@ export const fetchCommits = createAsyncThunk(
     }
 )
 
-const initialState = {
-    commits: [] as any[],
+interface RepoState {
+    commits: ReposCommits
+}
+
+const initialState: Partial<RepoState> = {
+    commits: [],
 }
 
 const reposSlice = createSlice({

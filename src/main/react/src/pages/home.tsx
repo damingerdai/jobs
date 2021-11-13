@@ -166,7 +166,9 @@ const Home: React.FC = () => {
                 <TableCell align="left">{job.timezone}</TableCell>
                 <TableCell align="left">
                   <Button variant="contained" color="warning">Pause</Button>
-                  <Button variant="contained" color="error">Delete</Button>
+                  <Button variant="contained" color="error" onClick={() => {
+                    
+                  }}>Delete</Button>
                 </TableCell>
               </TableRow>
             ))}
