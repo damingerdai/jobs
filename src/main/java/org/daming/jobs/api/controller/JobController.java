@@ -22,7 +22,7 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api/v1")
 @Api(tags = "Api Controller")
-public class ApiController {
+public class JobController {
 
     private IQuartzService quartzService;
 
@@ -71,7 +71,7 @@ public class ApiController {
         }
     }
 
-    public ApiController(IQuartzService quartzService) {
+    public JobController(IQuartzService quartzService) {
         super();
         this.quartzService = quartzService;
     }
