@@ -146,7 +146,7 @@ const Home = () => {
                 <TableCell align="left">{job.cron}</TableCell>
                 <TableCell align="left">{job.group}</TableCell>
                 <TableCell align="left">{job.state}</TableCell>
-                <TableCell align="left">{job.timezone}</TableCell>
+                <TableCell align="left">{job?.timezone}</TableCell>
                 <TableCell align="left">
                   <Button variant="contained" color="warning">Pause</Button>
                   <Button variant="contained" color="error" onClick={() => {

@@ -20,7 +20,7 @@ interface NavbarProps {
 }
 
 const Navbar: React.FC<NavbarProps> = (props) => {
-  const { username } = useAppSelector(state => state.login);
+  const { username } = useAppSelector(state => state?.login);
   const navigate = useNavigate();
   const mode = useSelector((state: RootState) => state.theme.mode) as ThemeMode;
   const dispatch = useDispatch();
@@ -34,8 +34,8 @@ const Navbar: React.FC<NavbarProps> = (props) => {
       <AppBar position="static" >
         <Toolbar >
           <Typography variant="h6" component="div" >{props.brand}</Typography>
-          <Button component={RouterLink} to="/" color="inherit" >Home</Button>
-          <Button component={RouterLink} to="/repos" color="inherit" >Repos</Button>
+          <Button component={RouterLink as any} to="/" color="inherit" >Home</Button>
+          <Button component={RouterLink as any} to="/repos" color="inherit" >Repos</Button>
           <Box component="div" sx={{ flexGrow: 1 }} />
           <ThemeModePicker mode={mode} modeChange={(mode) => {
             props.toggleMode(mode);
@@ -43,7 +43,7 @@ const Navbar: React.FC<NavbarProps> = (props) => {
           }} />
           {username
            ? <Button color="inherit">{username}</Button> 
-           : <Button component={RouterLink} to="/login" color="inherit">Login</Button>}
+           : <Button component={RouterLink as any} to="/login" color="inherit">Login</Button>}
         </Toolbar>
       </AppBar>
     </Box>

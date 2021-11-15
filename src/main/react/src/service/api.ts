@@ -24,6 +24,8 @@ export const api = {
         } else {
             throw new Error(res.statusText);
         }
-    }
+    },
+
+    // async login(username, password): Promise<>
 
 }

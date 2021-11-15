@@ -19,7 +19,7 @@ const Login: React.FC = () => {
 
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const { username } = useAppSelector(state => state.login);
+  const { username } = useAppSelector(state => state?.login);
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     {
@@ -61,7 +61,7 @@ const Login: React.FC = () => {
           <TextField
             margin="normal"
             required
-            fullWidth
+            fullWidth={true}
             id="username"
             name="username"
             label="User Name"
@@ -72,7 +72,7 @@ const Login: React.FC = () => {
           <TextField
             margin="normal"
             required
-            fullWidth
+            fullWidth={true}
             id="password"
             name="password"
             label="Password"

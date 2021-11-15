@@ -7,13 +7,13 @@ export const fetchCommits = createAsyncThunk(
     async () => {
         const url = "/api/v1/repos/commits";
         const response = await api.get<{ sha: any; commit: any; }[]>(url);
-        const commits = response.map((res: { sha: any; commit: any; }) => {
+        const commits = response?.map((res: { sha: any; commit: any; }) => {
             return {
                 sha: res.sha,
                 ...res.commit
-            }
+            } as any
         });
-        return commits;
+        return commits || [];
     }
 )
 
@@ -44,5 +44,5 @@ const reposSlice = createSlice({
     }
 })
 
-export const { actions, reducer: reposReducer  } = reposSlice;
+export const { actions, reducer: reposReducer } = reposSlice;
 export const { setCommits } = actions;
