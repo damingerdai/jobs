@@ -63,6 +63,7 @@ public class ShiroConfig {
         filterRuleMap.put("/swagger-ui/**", "anon");
         filterRuleMap.put("/swagger-resources/**/**", "anon");
         filterRuleMap.put("/v2/api-docs", "anon");
+        filterRuleMap.put("/api/**/token", "anon");
         // 所有请求通过我们自己的JWT Filter
         filterRuleMap.put("/**", "jwt");
         filterRuleMap.put("/api/**", "jwt");

@@ -9,6 +9,10 @@ import com.auth0.jwt.interfaces.JWTVerifier;
 import java.io.UnsupportedEncodingException;
 import java.util.Date;
 
+/**
+ * please use @org.daming.jobs.base.utils.JwtTool
+ */
+@Deprecated
 public class JWTUtil {
 
     // 过期时间5分钟
