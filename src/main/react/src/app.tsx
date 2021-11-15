@@ -2,10 +2,10 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
-import { Provider, useSelector } from 'react-redux';
+import { Provider } from 'react-redux';
 import { BrowserRouter } from "react-router-dom";
 
-import { store, RootState } from './slices/store';
+import { store } from './slices/store';
 import { PrimaryLayout } from './layout';
 import Navbar from "./components/nav";
 

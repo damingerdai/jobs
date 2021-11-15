@@ -8,20 +8,37 @@ import TextField from "@mui/material/TextField";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Typography from "@mui/material/Typography";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
-import React from "react";
+
+import React, { useEffect } from "react";
+import { useNavigate } from "react-router";
+
+import { useAppDispatch, useAppSelector } from "../slices/hook";
+import { setUsername } from "../slices/login";
 
 const Login: React.FC = () => {
 
-    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {{
-        event.preventDefault();
-        const data = new FormData(event.currentTarget);
-        const user = { email: data.get('email'), password: data.get('password') };
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+  const { username } = useAppSelector(state => state.login);
 
-        if (user.email === 'mingguobin@live.com' && user.password === '12345') {
-            document.location = '/'
-        }
-         
-    }}
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    {
+      event.preventDefault();
+      const data = new FormData(event.currentTarget);
+      const user = { username: data.get('username'), password: data.get('password') };
+      if (user.username === 'admin' && user.password === '12345') {
+          dispatch(setUsername(user.username));
+      }
+
+    }
+  }
+
+  useEffect(() => {
+    if (username?.trim()) {
+      navigate("/");
+    }
+  }, [username])
+
 
   return (
     <Container component="main" maxWidth="xs">
@@ -45,11 +62,11 @@ const Login: React.FC = () => {
             margin="normal"
             required
             fullWidth
-            id="email"
-            name="email"
-            label="Email Address"
-            autoComplete="email"
-            placeholder="email: mingguobin@live.com"
+            id="username"
+            name="username"
+            label="User Name"
+            autoComplete="text"
+            placeholder="username: admin"
             autoFocus
           />
           <TextField
