@@ -7,7 +7,7 @@
   "license": "MIT",
   "scripts": {
     "clean": "rimraf dist",
-    "lint": "eslint",
+    "lint": "eslint ./src",
     "prettify": "prettier --check '{src,__{tests,mocks}__}/**/*.{js,ts}'",
     "prettify:fix": "prettier --write '{src,__{tests,mocks}__}/**/*.{js,ts}'",
     "build": "rimraf dist && cross-env NODE_ENV=production webpack",
@@ -24,6 +24,7 @@
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-redux": "^7.2.6",
+    "react-router": "^6.0.1",
     "react-router-dom": "^6.0.1",
     "redux-thunk": "^2.4.0"
   },

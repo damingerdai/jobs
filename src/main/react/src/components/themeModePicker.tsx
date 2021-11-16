@@ -12,12 +12,12 @@ interface themeModePickerProps {
 }
 
 export const ThemeModePicker: React.FC<themeModePickerProps> = (props) => {
-    const { mode, modeChange } = props
-    if (mode === 'dark') {
-        return <IconButton aria-label="theme" color="inherit"  onClick={() => modeChange('light')}><NightlightRoundedIcon/></IconButton>
-    } else if (mode === 'light') {
-        return <IconButton aria-label="theme" color="inherit" onClick={() => modeChange('dark')}><LightModeRoundedIcon/></IconButton>
-    } else {
-        return null;
-    }
+	const { mode, modeChange } = props
+	if (mode === 'dark') {
+		return <IconButton aria-label="theme" color="inherit" onClick={() => modeChange('light')}><NightlightRoundedIcon /></IconButton>
+	} if (mode === 'light') {
+		return <IconButton aria-label="theme" color="inherit" onClick={() => modeChange('dark')}><LightModeRoundedIcon /></IconButton>
+	}
+	return null;
+
 }

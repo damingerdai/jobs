@@ -6,9 +6,8 @@ export const api = {
 		if (res.ok) {
 			const data = await res.json()
 			return data as T
-		} else {
-			throw new Error(res.statusText)
 		}
+		throw new Error(res.statusText)
 	},
 
 	async post<T>(url: string, data?: any): Promise<T> {
@@ -20,10 +19,9 @@ export const api = {
 			body: typeof data === 'string' ? data : JSON.stringify(data),
 		})
 		if (res.ok) {
-			const data = await res.json()
-			return data as T
-		} else {
-			throw new Error(res.statusText)
+			const r = await res.json()
+			return r as T
 		}
+		throw new Error(res.statusText)
 	},
 }

@@ -1,38 +1,38 @@
-import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
-import React, { useEffect, useState } from "react";
-import ReactDOM from "react-dom";
+import React, { useState } from 'react';
+import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter } from 'react-router-dom';
 
 import { store } from './slices/store';
 import { PrimaryLayout } from './layout';
-import Navbar from "./components/nav";
+import Navbar from './components/nav';
 
-import "./styles.scss";
+import './styles.scss';
 
 
-function App() {
-  const Theme = createTheme();
-  const [theme, setTheme] = useState(Theme);
+const App = () => {
+	const Theme = createTheme();
+	const [theme, setTheme] = useState(Theme);
 
-  return (
-    <Provider store={store}>
-      <ThemeProvider theme={theme}>
-      <Navbar brand={"Jobs UI"} toggleMode={(mode) => {
-          const newTheme = createTheme({
-            palette: {
-              mode
-            }
-          });
-          setTheme(newTheme);
-          const bgColor = newTheme.palette.background.paper;
-          document.body.style.backgroundColor = bgColor;
-        }} />
-        <PrimaryLayout />
-      </ThemeProvider>
-    </Provider>
-  );
+	return (
+		<Provider store={store}>
+			<ThemeProvider theme={theme}>
+				<Navbar brand="Jobs UI" toggleMode={(mode) => {
+					const newTheme = createTheme({
+						palette: {
+							mode
+						}
+					});
+					setTheme(newTheme);
+					const bgColor = newTheme.palette.background.paper;
+					document.body.style.backgroundColor = bgColor;
+				}} />
+				<PrimaryLayout />
+			</ThemeProvider>
+		</Provider>
+	);
 }
 
-ReactDOM.render(<BrowserRouter><App /></BrowserRouter>, document.getElementById("root"));
+ReactDOM.render(<BrowserRouter><App /></BrowserRouter>, document.getElementById('root'));
