@@ -1,22 +1,22 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit'
 interface LoginState {
-  username: string;
+	username: string
 }
 
 const initialState: Partial<LoginState> = {
-    username: ''
+	username: '',
 }
 
 const loginSlice = createSlice({
-    name: 'login',
-    initialState,
-    reducers: {
-        setUsername: (state, action) => {
-            state.username = action.payload;
-            return state;
-        }
-    }
+	name: 'login',
+	initialState,
+	reducers: {
+		setUsername: (state, action) => {
+			state.username = action.payload
+			return state
+		},
+	},
 })
 
-export const { actions, reducer: loginReducer } = loginSlice;
-export const { setUsername } = actions;
+export const { actions, reducer: loginReducer } = loginSlice
+export const { setUsername } = actions

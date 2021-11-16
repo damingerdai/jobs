@@ -1,13 +1,13 @@
 export interface ReposCommit {
-    sha: string,
-    message: string,
-    author: {
-        name: string,
-        date: string,
-    },
-    committer: {
-        name: string
-    }
+	sha: string
+	message: string
+	author: {
+		name: string
+		date: string
+	}
+	committer: {
+		name: string
+	}
 }
 
-export type ReposCommits = ReposCommit[];
+export type ReposCommits = ReposCommit[]

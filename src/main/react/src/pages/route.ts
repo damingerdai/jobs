@@ -1,8 +1,8 @@
-import { LazyExoticComponent } from "react";
+import { LazyExoticComponent } from 'react'
 
 export interface Router {
-    path: string;
-    component: LazyExoticComponent<any>
+	path: string
+	component: LazyExoticComponent<any>
 }
 
-export type Routers = Router[];
+export type Routers = Router[]
