@@ -6,6 +6,7 @@
   "author": "damingerdai",
   "license": "MIT",
   "scripts": {
+    "clean": "rimraf dist",
     "build": "rimraf dist && cross-env NODE_ENV=production webpack",
     "start": "webpack serve --mode development",
     "test": "jest ./test"
