@@ -1,29 +1,50 @@
-import { UserToken } from './../model/token';
+import { UserToken } from '../model/token';
+
+let token: string;
+
 export const api = {
-	async get<T>(url: string, params?: any): Promise<T> {
-		const res = await fetch(
-			params ? url : `${url}?${new URLSearchParams(params).toString()}`
-		)
-		if (res.ok) {
-			const data = await res.json()
-			return data as T
+
+	setToken(_token: string) {
+		if (_token) {
+			console.log(_token);
+			token = _token;
 		}
-		throw new Error(res.statusText)
+	},
+
+	async get<T>(url: string, params?: any): Promise<T> {
+		let realUrl = url;
+		if (params) {
+			realUrl = `${url}?${new URLSearchParams(params).toString()}`;
+		}
+		console.log(token);
+		const request = await fetch(realUrl, {
+			method: 'GET',
+			headers: {
+				'Content-Type': 'application/json',
+				'Authorization': token ?? '',
+			},
+		});
+		if (request.ok) {
+			const response = await request.json();
+			return response as T;
+		}
+		throw new Error(request.statusText);
 	},
 
 	async post<T>(url: string, data?: any): Promise<T> {
-		const res = await fetch(url, {
+		const request = await fetch(url, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
+				'Authorization': token ?? '',
 			},
 			body: typeof data === 'string' ? data : JSON.stringify(data),
 		})
-		if (res.ok) {
-			const r = await res.json()
-			return r as T
+		if (request.ok) {
+			const response = await request.json();
+			return response as T;
 		}
-		throw new Error(res.statusText)
+		throw new Error(request.statusText);
 	},
 
 	async login(username: string, password: string): Promise<UserToken> {

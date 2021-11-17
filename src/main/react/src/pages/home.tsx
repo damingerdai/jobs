@@ -14,26 +14,20 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import TextField from '@mui/material/TextField';
 import Paper from '@mui/material/Paper';
+
+import { IJob, Jobs } from '../model/job';
 import { api } from '../service/api';
-
-interface IJob {
-	className: string;
-	name: string;
-	cron: string;
-	group: string;
-	state: string;
-	timezone: string;
-}
-
-type Jobs = IJob[];
+import { useAppDispatch } from '../slices/hook';
+import { fetchJobs } from '../slices/job';
 
 const Home = () => {
+	const dispatch = useAppDispatch();
 	const [job, setJob] = useState({} as Partial<IJob>);
 	const [open, setOpen] = useState(false);
 	const [jobs, setJobs] = useState([] as Jobs);
 
 	useEffect(() => {
-		fetchAllJobs();
+		dispatch(fetchJobs());
 	}, []);
 
 	const fetchAllJobs = () => {

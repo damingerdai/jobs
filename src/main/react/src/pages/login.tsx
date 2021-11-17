@@ -19,7 +19,7 @@ const Login: React.FC = () => {
 
 	const dispatch = useAppDispatch();
 	const navigate = useNavigate();
-	const { username } = useAppSelector(state => state.login);
+	const { username, token } = useAppSelector(state => state.login);
 
 	const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
 		// eslint-disable-next-line no-lone-blocks
@@ -28,14 +28,13 @@ const Login: React.FC = () => {
 			const data = new FormData(event.currentTarget);
 			const user = { username: data.get('username') as string, password: data.get('password') as string };
 			dispatch(fetchToken(user));
-			dispatch(setUsername(user.username));
 		}
 	}
+
 
 	useEffect(() => {
 		if (username?.trim()) {
 			navigate('/');
-
 		}
 	}, [username])
 

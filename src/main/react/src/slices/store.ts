@@ -1,11 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit'
 
-import { loginReducer } from './login'
-import { reposReducer } from './repos'
-import themeReducer from './theme'
+import { jobReducer } from './job';
+import { loginReducer } from './login';
+import { reposReducer } from './repos';
+import { themeReducer } from './theme';
 
 export const store = configureStore({
 	reducer: {
+		job: jobReducer,
 		login: loginReducer,
 		repos: reposReducer,
 		theme: themeReducer,

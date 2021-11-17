@@ -1,9 +1,11 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import { api } from '../service/api'
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { api } from '../service/api';
 
-export const fetchToken = createAsyncThunk('login/fetchToken', async (args: { username: string, password: string }) => {
+export const fetchToken = createAsyncThunk('login/fetchToken', async (args: { username: string, password: string }, thunkApi) => {
 	const { username, password } = args;
 	const usertoken = await api.login(username, password);
+	api.setToken(usertoken.token);
+	thunkApi.dispatch(loginSlice.actions.setUsername(username));
 	return usertoken;
 })
 
@@ -40,6 +42,7 @@ const loginSlice = createSlice({
 			state.token = action.payload.token;
 			state.refreshToken = action.payload.refreshToken;
 			state.exp = action.payload.exp;
+			api.setToken(action.payload.token);
 		})
 		builder.addCase(fetchToken.rejected, (state, action) => {
 			console.error(state, action)
@@ -47,5 +50,7 @@ const loginSlice = createSlice({
 	}
 })
 
-export const { actions, reducer: loginReducer } = loginSlice
-export const { setUsername } = actions
+export const { actions, reducer: loginReducer } = loginSlice;
+export const { setUsername } = actions;
+
+
