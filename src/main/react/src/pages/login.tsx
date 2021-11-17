@@ -10,10 +10,10 @@ import Typography from '@mui/material/Typography';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 
 import React, { useEffect } from 'react';
-import { useNavigate } from 'react-router';
+import { useNavigate } from 'react-router-dom';
 
 import { useAppDispatch, useAppSelector } from '../slices/hook';
-import { setUsername } from '../slices/login';
+import { fetchToken, setUsername } from '../slices/login';
 
 const Login: React.FC = () => {
 
@@ -26,17 +26,15 @@ const Login: React.FC = () => {
 		{
 			event.preventDefault();
 			const data = new FormData(event.currentTarget);
-			const user = { username: data.get('username'), password: data.get('password') };
-			if (user.username === 'admin' && user.password === '12345') {
-				dispatch(setUsername(user.username));
-			}
-
+			const user = { username: data.get('username') as string, password: data.get('password') as string };
+			dispatch(fetchToken(user));
 		}
 	}
 
 	useEffect(() => {
 		if (username?.trim()) {
 			navigate('/');
+			console.log('hello world')
 		}
 	}, [username])
 

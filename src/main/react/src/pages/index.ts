@@ -1,5 +1,6 @@
-import React from 'react'
-import { Routers } from './route'
+import React from 'react';
+
+import { Routers } from './route';
 
 export const ROUTES: Routers = [
 	{
@@ -14,4 +15,4 @@ export const ROUTES: Routers = [
 		path: '/repos',
 		component: React.lazy(() => import('./repos')),
 	},
-]
+];
