@@ -28,13 +28,14 @@ const Login: React.FC = () => {
 			const data = new FormData(event.currentTarget);
 			const user = { username: data.get('username') as string, password: data.get('password') as string };
 			dispatch(fetchToken(user));
+			dispatch(setUsername(user.username));
 		}
 	}
 
 	useEffect(() => {
 		if (username?.trim()) {
 			navigate('/');
-			console.log('hello world')
+
 		}
 	}, [username])
 
@@ -54,7 +55,7 @@ const Login: React.FC = () => {
 					<LockOutlinedIcon />
 				</Avatar>
 				<Typography component='h1' variant='h5'>
-          Sign In
+          Sign In {username}
 				</Typography>
 				<Box component='form' onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
 					<TextField
