@@ -17,27 +17,25 @@ import Paper from '@mui/material/Paper';
 
 import { IJob, Jobs } from '../model/job';
 import { api } from '../service/api';
-import { useAppDispatch } from '../slices/hook';
+import { useAppDispatch, useAppSelector } from '../slices/hook';
 import { fetchJobs } from '../slices/job';
 
 const Home = () => {
 	const dispatch = useAppDispatch();
 	const [job, setJob] = useState({} as Partial<IJob>);
 	const [open, setOpen] = useState(false);
-	const [jobs, setJobs] = useState([] as Jobs);
+	// const [jobs, setJobs] = useState([] as Jobs);
+	const { list } = useAppSelector(state => state.job as { list: Jobs});
 
 	useEffect(() => {
 		dispatch(fetchJobs());
 	}, []);
 
-	const fetchAllJobs = () => {
-		api.get<Jobs>('api/v1/jobs').then((jobs) => setJobs(jobs));
-	};
 
 	const createJob = (e?: any) => {
 		api.post('api/v1/job', job).then((res) => {
 			setOpen(false);
-			fetchAllJobs();
+			dispatch(fetchJobs());
 		});
 	};
 
@@ -127,9 +125,9 @@ const Home = () => {
 						</TableRow>
 					</TableHead>
 					<TableBody>
-						{jobs.map((job, i) => (
+						{list?.map((job, i) => (
 							<TableRow
-								key={job.name}
+								key={job.name + job.group}
 								sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
 							>
 								<TableCell component="th" scope="row">

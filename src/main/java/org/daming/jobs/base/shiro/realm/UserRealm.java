@@ -66,10 +66,6 @@ public class UserRealm  extends AuthorizingRealm {
 
         UserBean userBean = this.shiroUserService.getUser(username);
         if (userBean == null) {
-            throw new AuthenticationException("User didn't existed!");
-        }
-
-        if (! JWTUtil.verify(token, username, userBean.getPassword())) {
             throw new AuthenticationException("Username or password error");
         }
 

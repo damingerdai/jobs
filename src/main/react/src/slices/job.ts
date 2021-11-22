@@ -6,6 +6,12 @@ export const fetchJobs = createAsyncThunk('job/fetchJobs', async (args, thunkApi
 	const state = thunkApi.getState();
 	const jobs = await api.get('/api/v1/jobs');
 	return jobs;
+});
+
+export const createJob = createAsyncThunk('job/createJob', async (args) => {
+    await api.post('/api/v1/job', args);
+    const jobs = await api.get('/api/v1/jobs');
+	return jobs;
 })
 
 interface JobState {
