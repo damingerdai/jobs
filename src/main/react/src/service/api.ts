@@ -16,7 +16,6 @@ export const api = {
 		if (params) {
 			realUrl = `${url}?${new URLSearchParams(params).toString()}`;
 		}
-		console.log(token);
 		const request = await fetch(realUrl, {
 			method: 'GET',
 			headers: {
@@ -46,6 +45,23 @@ export const api = {
 		}
 		throw new Error(request.statusText);
 	},
+
+	async delete<T>(url: string, data?: any): Promise<T> {
+		const request = await fetch(url, {
+			method: 'DELETE',
+			headers: {
+				'Content-Type': 'application/json',
+				'Authorization': token ?? '',
+			},
+			body: typeof data === 'string' ? data : JSON.stringify(data),
+		})
+		if (request.ok) {
+			const response = await request.json();
+			return response as T;
+		}
+		throw new Error(request.statusText);
+	},
+
 
 	async login(username: string, password: string): Promise<UserToken> {
 		const url = '/api/v1/token'

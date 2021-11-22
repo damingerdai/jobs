@@ -16,14 +16,14 @@ import TextField from '@mui/material/TextField';
 import Paper from '@mui/material/Paper';
 
 import { IJob, Jobs } from '../model/job';
-import { api } from '../service/api';
 import { useAppDispatch, useAppSelector } from '../slices/hook';
-import { fetchJobs } from '../slices/job';
+import { createJob, deleteJob, fetchJobs } from '../slices/job';
 
 const Home = () => {
 	const dispatch = useAppDispatch();
 	const [job, setJob] = useState({} as Partial<IJob>);
 	const [open, setOpen] = useState(false);
+	const [confirm, setConfirm] = useState(false);
 	// const [jobs, setJobs] = useState([] as Jobs);
 	const { list } = useAppSelector(state => state.job as { list: Jobs});
 
@@ -32,12 +32,17 @@ const Home = () => {
 	}, []);
 
 
-	const createJob = (e?: any) => {
-		api.post('api/v1/job', job).then((res) => {
-			setOpen(false);
-			dispatch(fetchJobs());
-		});
+	const doCreateJob = (e?: any) => {
+		dispatch(createJob(job as IJob));
+		setOpen(false);
+		setJob(null as any);
 	};
+
+	const doDeleteJob = () => {
+		dispatch(deleteJob(job as IJob));
+		setConfirm(false);
+		setJob(null as any);
+	}
 
 	return (
 		<Container component="main" maxWidth="lg">
@@ -46,6 +51,7 @@ const Home = () => {
 					variant="contained"
 					onClick={() => {
 						setOpen(true);
+						setJob(null as any);
 					}}
 				>
 					create job
@@ -59,7 +65,7 @@ const Home = () => {
 							id="name"
 							label="Name"
 							type="text"
-							defaultValue={job.name}
+							defaultValue={job?.name}
 							onChange={(e) => {
 								setJob({
 									...job,
@@ -75,7 +81,7 @@ const Home = () => {
 							id="cron"
 							label="Cron"
 							type="text"
-							defaultValue={job.cron}
+							defaultValue={job?.cron}
 							onChange={(e) => {
 								setJob({
 									...job,
@@ -91,7 +97,7 @@ const Home = () => {
 							id="group"
 							label="Group"
 							type="text"
-							defaultValue={job.group}
+							defaultValue={job?.group}
 							onChange={(e) => {
 								setJob({
 									...job,
@@ -104,8 +110,20 @@ const Home = () => {
 					</DialogContent>
 					<DialogActions>
 						<Button onClick={() => setOpen(false)}>Cancel</Button>
-						<Button color="secondary" onClick={createJob}>
+						<Button color="secondary" onClick={doCreateJob}>
 							Create
+						</Button>
+					</DialogActions>
+				</Dialog>
+				<Dialog open={confirm} onClose={() => setConfirm(false)}>
+					<DialogTitle>Delete job</DialogTitle>
+					<DialogContent>
+						Are your confirm?
+					</DialogContent>
+					<DialogActions>
+						<Button onClick={() => setConfirm(false)}>Cancel</Button>
+						<Button color="secondary" onClick={doDeleteJob}>
+							Delete
 						</Button>
 					</DialogActions>
 				</Dialog>
@@ -140,8 +158,11 @@ const Home = () => {
 								<TableCell align="left">{job.state}</TableCell>
 								<TableCell align="left">{job.timezone}</TableCell>
 								<TableCell align="left">
-									<Button variant="contained" color="warning">Pause</Button>
-									<Button variant="contained" color="error">Delete</Button>
+									{/* <Button variant="contained" color="warning">Pause</Button> */}
+									<Button variant="contained" color="error" onClick={() => {
+										setConfirm(true);
+										setJob(job);
+									}}>Delete</Button>
 								</TableCell>
 							</TableRow>
 						))}

@@ -76,6 +76,13 @@ public class QuartzServiceImpl implements IQuartzService {
     }
 
     @Override
+    public boolean pauseJob(String name, String group) throws SchedulerException {
+        var jobKey = JobKey.jobKey(name, group);
+        scheduler.pauseJob(jobKey);
+        return true;
+    }
+
+    @Override
     public List<JobInfo> listJob() throws SchedulerException {
         var groupNames = scheduler.getJobGroupNames();
         var jobInfos = new ArrayList<JobInfo>(groupNames.size());

@@ -21,7 +21,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/v1")
-@Api(tags = "Api Controller")
+@Api(tags = "Jobs Controller")
 public class JobController {
 
     private IQuartzService quartzService;
@@ -55,6 +55,7 @@ public class JobController {
             this.quartzService.deleteJob(request.getName(), request.getGroup());
             return ResponseEntity.of(Optional.of(true));
         } catch (SchedulerException e) {
+            e.printStackTrace();
             return ResponseEntity.of(Optional.of(false));
         }
 

@@ -1,16 +1,21 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { Jobs } from '../model/job';
+import { IJob, Jobs } from '../model/job';
 import { api } from '../service/api';
 
-export const fetchJobs = createAsyncThunk('job/fetchJobs', async (args, thunkApi) => {
-	const state = thunkApi.getState();
+export const fetchJobs = createAsyncThunk('job/fetchJobs', async () => {
 	const jobs = await api.get('/api/v1/jobs');
 	return jobs;
 });
 
-export const createJob = createAsyncThunk('job/createJob', async (args) => {
-    await api.post('/api/v1/job', args);
-    const jobs = await api.get('/api/v1/jobs');
+export const createJob = createAsyncThunk('job/createJob', async (args: IJob) => {
+	await api.post('/api/v1/job', args);
+	const jobs = await api.get('/api/v1/jobs');
+	return jobs;
+});
+
+export const deleteJob = createAsyncThunk('job/deleteJob', async (args: IJob) => {
+	await api.delete('/api/v1/job', args);
+	const jobs = await api.get('/api/v1/jobs');
 	return jobs;
 })
 
@@ -36,6 +41,18 @@ const jobSlice = createSlice({
 			state.list = action.payload as Jobs ?? []
 		})
 		builder.addCase(fetchJobs.rejected, (state, action) => {
+			console.error(state, action)
+		})
+		builder.addCase(createJob.fulfilled, (state, action) => {
+			state.list = action.payload as Jobs ?? []
+		})
+		builder.addCase(createJob.rejected, (state, action) => {
+			console.error(state, action)
+		})
+		builder.addCase(deleteJob.fulfilled, (state, action) => {
+			state.list = action.payload as Jobs ?? []
+		})
+		builder.addCase(deleteJob.rejected, (state, action) => {
 			console.error(state, action)
 		})
 	}
