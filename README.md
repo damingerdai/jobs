@@ -5,7 +5,6 @@
 
 ![job-list](https://raw.githubusercontent.com/damingerdai/jobs/master/screenshots/job-list.png)
 ![job-create-dark](https://raw.githubusercontent.com/damingerdai/jobs/master/screenshots/job-create-dark.png)
-![swagger-ui](https://raw.githubusercontent.com/damingerdai/jobs/master/screenshots/swagger-ui.png)
 ![changelogs](https://raw.githubusercontent.com/damingerdai/jobs/master/screenshots/changelogs.png)
 
 ## Requirement
@@ -84,3 +83,4 @@ open the [browser](http://localhost:3000/)
 ####  Swagger UI
 
 `jobs` support [swagger ui](http://127.0.0.1:8443/swagger-ui/index.html).
+![swagger-ui](https://raw.githubusercontent.com/damingerdai/jobs/master/screenshots/swagger-ui.png)
