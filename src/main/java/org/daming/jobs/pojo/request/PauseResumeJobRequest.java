@@ -7,11 +7,10 @@ import java.io.Serial;
 import java.io.Serializable;
 import java.util.StringJoiner;
 
-@ApiModel("delete job request")
-public class DeleteJobRequest implements Serializable  {
-
+@ApiModel("pause or resume job request")
+public class PauseResumeJobRequest implements Serializable {
     @Serial
-    private static final long serialVersionUID = -119673591373760086L;
+    private static final long serialVersionUID = 3515248087232024755L;
 
     @ApiModelProperty(name = "jod name", dataType = "String", required = true, example="job1")
     private String name;
@@ -35,11 +34,11 @@ public class DeleteJobRequest implements Serializable  {
         this.group = group;
     }
 
-    public DeleteJobRequest() {
+    public PauseResumeJobRequest() {
         super();
     }
 
-    public DeleteJobRequest(String name, String group) {
+    public PauseResumeJobRequest(String name, String group) {
         super();
         this.name = name;
         this.group = group;

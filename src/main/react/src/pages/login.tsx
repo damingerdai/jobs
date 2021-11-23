@@ -79,10 +79,10 @@ const Login: React.FC = () => {
 						autoComplete='current-password'
 						placeholder='password: 12345'
 					/>
-					<FormControlLabel
+					{/* <FormControlLabel
 						control={<Checkbox value='remeber' color='primary' />}
 						label='Remember me'
-					/>
+					/> */}
 					<Button
 						type='submit'
 						fullWidth

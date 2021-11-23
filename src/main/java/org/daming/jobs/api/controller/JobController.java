@@ -5,16 +5,11 @@ import io.swagger.annotations.ApiOperation;
 import org.daming.jobs.pojo.JobInfo;
 import org.daming.jobs.pojo.request.AddJobRequest;
 import org.daming.jobs.pojo.request.DeleteJobRequest;
+import org.daming.jobs.pojo.request.PauseResumeJobRequest;
 import org.daming.jobs.service.IQuartzService;
 import org.quartz.SchedulerException;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -69,6 +64,32 @@ public class JobController {
         } catch (SchedulerException e) {
            // return ResponseEntity.status(404).body(e.getMessage());
             throw new RuntimeException(e);
+        }
+    }
+
+    @ApiOperation(value = "pause job api", notes = "pause a quartz job")
+    @PutMapping(path = "/job/pause")
+    public ResponseEntity<Boolean> pauseJob(@RequestBody PauseResumeJobRequest request) {
+        try {
+            var job = request.getName();
+            var group = request.getGroup();
+            return ResponseEntity.ok(this.quartzService.pauseJob(job, group));
+        } catch (SchedulerException e) {
+            e.printStackTrace();
+            return ResponseEntity.status(500).body(false);
+        }
+    }
+
+    @ApiOperation(value = "resume job api", notes = "resume a quartz job")
+    @PutMapping(path = "/job/resume")
+    public ResponseEntity<Boolean> resumeJob(@RequestBody PauseResumeJobRequest request) {
+        try {
+            var job = request.getName();
+            var group = request.getGroup();
+            return ResponseEntity.ok(this.quartzService.resumeJob(job, group));
+        } catch (SchedulerException e) {
+            e.printStackTrace();
+            return ResponseEntity.status(500).body(false);
         }
     }
 

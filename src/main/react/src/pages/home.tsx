@@ -17,7 +17,13 @@ import Paper from '@mui/material/Paper';
 
 import { IJob, Jobs } from '../model/job';
 import { useAppDispatch, useAppSelector } from '../slices/hook';
-import { createJob, deleteJob, fetchJobs } from '../slices/job';
+import {
+	createJob,
+	deleteJob,
+	fetchJobs,
+	pauseJob,
+	resumeJob
+} from '../slices/job';
 
 const Home = () => {
 	const dispatch = useAppDispatch();
@@ -25,12 +31,11 @@ const Home = () => {
 	const [open, setOpen] = useState(false);
 	const [confirm, setConfirm] = useState(false);
 	// const [jobs, setJobs] = useState([] as Jobs);
-	const { list } = useAppSelector(state => state.job as { list: Jobs});
+	const { list } = useAppSelector(state => state.job as { list: Jobs });
 
 	useEffect(() => {
 		dispatch(fetchJobs());
 	}, []);
-
 
 	const doCreateJob = (e?: any) => {
 		dispatch(createJob(job as IJob));
@@ -42,7 +47,7 @@ const Home = () => {
 		dispatch(deleteJob(job as IJob));
 		setConfirm(false);
 		setJob(null as any);
-	}
+	};
 
 	return (
 		<Container component="main" maxWidth="lg">
@@ -57,7 +62,7 @@ const Home = () => {
 					create job
 				</Button>
 				<Dialog open={open} onClose={() => setOpen(false)}>
-					<DialogTitle>Create A job</DialogTitle>
+					<DialogTitle>Create a job</DialogTitle>
 					<DialogContent>
 						<TextField
 							autoFocus
@@ -66,10 +71,10 @@ const Home = () => {
 							label="Name"
 							type="text"
 							defaultValue={job?.name}
-							onChange={(e) => {
+							onChange={e => {
 								setJob({
 									...job,
-									name: e.target.value,
+									name: e.target.value
 								});
 							}}
 							fullWidth
@@ -82,10 +87,10 @@ const Home = () => {
 							label="Cron"
 							type="text"
 							defaultValue={job?.cron}
-							onChange={(e) => {
+							onChange={e => {
 								setJob({
 									...job,
-									cron: e.target.value,
+									cron: e.target.value
 								});
 							}}
 							fullWidth
@@ -98,10 +103,10 @@ const Home = () => {
 							label="Group"
 							type="text"
 							defaultValue={job?.group}
-							onChange={(e) => {
+							onChange={e => {
 								setJob({
 									...job,
-									group: e.target.value,
+									group: e.target.value
 								});
 							}}
 							fullWidth
@@ -117,9 +122,7 @@ const Home = () => {
 				</Dialog>
 				<Dialog open={confirm} onClose={() => setConfirm(false)}>
 					<DialogTitle>Delete job</DialogTitle>
-					<DialogContent>
-						Are your confirm?
-					</DialogContent>
+					<DialogContent>Are your confirm?</DialogContent>
 					<DialogActions>
 						<Button onClick={() => setConfirm(false)}>Cancel</Button>
 						<Button color="secondary" onClick={doDeleteJob}>
@@ -143,26 +146,53 @@ const Home = () => {
 						</TableRow>
 					</TableHead>
 					<TableBody>
-						{list?.map((job, i) => (
+						{list?.map((j, i) => (
 							<TableRow
-								key={job.name + job.group}
+								key={j.name + j.group}
 								sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
 							>
 								<TableCell component="th" scope="row">
 									{i + 1}
 								</TableCell>
-								<TableCell align="left">{job.name}</TableCell>
-								<TableCell align="left">{job.className}</TableCell>
-								<TableCell align="left">{job.cron}</TableCell>
-								<TableCell align="left">{job.group}</TableCell>
-								<TableCell align="left">{job.state}</TableCell>
-								<TableCell align="left">{job.timezone}</TableCell>
+								<TableCell align="left">{j.name}</TableCell>
+								<TableCell align="left">{j.className}</TableCell>
+								<TableCell align="left">{j.cron}</TableCell>
+								<TableCell align="left">{j.group}</TableCell>
+								<TableCell align="left">{j.state}</TableCell>
+								<TableCell align="left">{j.timezone}</TableCell>
 								<TableCell align="left">
-									{/* <Button variant="contained" color="warning">Pause</Button> */}
-									<Button variant="contained" color="error" onClick={() => {
-										setConfirm(true);
-										setJob(job);
-									}}>Delete</Button>
+									{j.state === 'NORMAL' && (
+										<Button
+											variant="contained"
+											color="warning"
+											onClick={() => {
+												dispatch(pauseJob(j));
+											}}
+										>
+											Pause
+										</Button>
+									)}
+									{j.state === 'PAUSED' && (
+										<Button
+											variant="contained"
+											color="secondary"
+											onClick={() => {
+												dispatch(resumeJob(j));
+											}}
+										>
+											Resume
+										</Button>
+									)}
+									<Button
+										variant="contained"
+										color="error"
+										onClick={() => {
+											setConfirm(true);
+											setJob(job);
+										}}
+									>
+										Delete
+									</Button>
 								</TableCell>
 							</TableRow>
 						))}
@@ -171,6 +201,6 @@ const Home = () => {
 			</TableContainer>
 		</Container>
 	);
-}
+};
 
 export default Home;

@@ -1,12 +1,13 @@
 import { UserToken } from '../model/token';
 
-let token: string;
+const inMemeryInitialState: any = localStorage.getItem('login') ? JSON.parse(localStorage.getItem('login') || '') : {};
+
+let token: string = inMemeryInitialState.token as string;
 
 export const api = {
 
 	setToken(_token: string) {
 		if (_token) {
-			console.log(_token);
 			token = _token;
 		}
 	},
@@ -33,6 +34,22 @@ export const api = {
 	async post<T>(url: string, data?: any): Promise<T> {
 		const request = await fetch(url, {
 			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+				'Authorization': token ?? '',
+			},
+			body: typeof data === 'string' ? data : JSON.stringify(data),
+		})
+		if (request.ok) {
+			const response = await request.json();
+			return response as T;
+		}
+		throw new Error(request.statusText);
+	},
+
+	async put<T>(url: string, data?: any): Promise<T> {
+		const request = await fetch(url, {
+			method: 'PUT',
 			headers: {
 				'Content-Type': 'application/json',
 				'Authorization': token ?? '',

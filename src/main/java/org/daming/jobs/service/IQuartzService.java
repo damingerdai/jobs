@@ -18,5 +18,7 @@ public interface IQuartzService {
 
     boolean pauseJob(String name, String group) throws SchedulerException;
 
+    boolean resumeJob(String name, String group) throws SchedulerException;
+
     List<JobInfo> listJob() throws SchedulerException;
 }

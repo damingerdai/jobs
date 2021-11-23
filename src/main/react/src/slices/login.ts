@@ -16,10 +16,13 @@ interface LoginState {
 	exp: Date;
 }
 
+const inMemeryInitialState = localStorage.getItem('login') ? JSON.parse(localStorage.getItem('login') || '') : {};
+
 const initialState: Partial<LoginState> = {
 	username: '',
 	token: '',
-	refreshToken: ''
+	refreshToken: '',
+	...inMemeryInitialState
 }
 
 const loginSlice = createSlice({
@@ -42,6 +45,7 @@ const loginSlice = createSlice({
 			state.token = action.payload.token;
 			state.refreshToken = action.payload.refreshToken;
 			state.exp = action.payload.exp;
+			localStorage.setItem('login', JSON.stringify(state, null, 2));
 			api.setToken(action.payload.token);
 		})
 		builder.addCase(fetchToken.rejected, (state, action) => {

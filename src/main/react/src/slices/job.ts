@@ -17,7 +17,19 @@ export const deleteJob = createAsyncThunk('job/deleteJob', async (args: IJob) =>
 	await api.delete('/api/v1/job', args);
 	const jobs = await api.get('/api/v1/jobs');
 	return jobs;
-})
+});
+
+export const pauseJob = createAsyncThunk('job/pauseJob', async (args: IJob) => {
+	await api.put('/api/v1/job/pause', args);
+	const jobs = await api.get('/api/v1/jobs');
+	return jobs;
+});
+
+export const resumeJob = createAsyncThunk('job/resumeJob', async (args: IJob) => {
+	await api.put('/api/v1/job/resume', args);
+	const jobs = await api.get('/api/v1/jobs');
+	return jobs;
+});
 
 interface JobState {
     list: Jobs;
@@ -53,6 +65,18 @@ const jobSlice = createSlice({
 			state.list = action.payload as Jobs ?? []
 		})
 		builder.addCase(deleteJob.rejected, (state, action) => {
+			console.error(state, action)
+		})
+		builder.addCase(pauseJob.fulfilled, (state, action) => {
+			state.list = action.payload as Jobs ?? []
+		})
+		builder.addCase(pauseJob.rejected, (state, action) => {
+			console.error(state, action)
+		})
+		builder.addCase(resumeJob.fulfilled, (state, action) => {
+			state.list = action.payload as Jobs ?? []
+		})
+		builder.addCase(resumeJob.rejected, (state, action) => {
 			console.error(state, action)
 		})
 	}
