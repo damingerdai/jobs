@@ -79,6 +79,7 @@ yarn start
 ```
 
 open the [browser](http://localhost:3000/)
+![login](https://raw.githubusercontent.com/damingerdai/jobs/master/screenshots/login.png)
 
 ####  Swagger UI
 
