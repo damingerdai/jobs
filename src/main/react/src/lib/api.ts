@@ -27,6 +27,8 @@ export const api = {
 		if (request.ok) {
 			const response = await request.json();
 			return response as T;
+		} else {
+			console.error(request);
 		}
 		throw new Error(request.statusText);
 	},

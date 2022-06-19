@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import { api } from '../service/api'
+import { api } from '../lib/api'
 import { ReposCommits } from '../types/respo'
 
 export const fetchCommits = createAsyncThunk('repos/fetchCommits', async () => {
