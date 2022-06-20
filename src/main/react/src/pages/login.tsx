@@ -19,7 +19,7 @@ const Login: React.FC = () => {
 
 	const dispatch = useAppDispatch();
 	const navigate = useNavigate();
-	const { username, token } = useAppSelector(state => state.login);
+	// const { username, token } = useAppSelector(state => state.login);
 
 	const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
 		// eslint-disable-next-line no-lone-blocks
@@ -27,16 +27,9 @@ const Login: React.FC = () => {
 			event.preventDefault();
 			const data = new FormData(event.currentTarget);
 			const user = { username: data.get('username') as string, password: data.get('password') as string };
-			dispatch(fetchToken(user));
+			dispatch(fetchToken(user)).then(() => navigate('/'));
 		}
 	}
-
-
-	useEffect(() => {
-		if (username?.trim()) {
-			navigate('/');
-		}
-	}, [username])
 
 
 	return (
@@ -54,7 +47,7 @@ const Login: React.FC = () => {
 					<LockOutlinedIcon />
 				</Avatar>
 				<Typography component='h1' variant='h5'>
-          Sign In {username}
+          Sign In
 				</Typography>
 				<Box component='form' onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
 					<TextField
@@ -89,7 +82,6 @@ const Login: React.FC = () => {
 						variant='contained'
 						sx={{ mt: 3, mb: 2 }}
 					>
-						{' '}
             Sign In
 					</Button>
 				</Box>
