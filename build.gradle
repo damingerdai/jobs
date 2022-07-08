@@ -29,7 +29,7 @@ dependencies {
 	implementation 'io.springfox:springfox-boot-starter:3.0.0'
 	implementation 'org.apache.shiro:shiro-spring-boot-starter:1.9.0'
 
-	implementation 'com.auth0:java-jwt:3.18.2'
+	implementation 'com.auth0:java-jwt:3.19.2'
 	implementation 'org.postgresql:postgresql'
 
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
