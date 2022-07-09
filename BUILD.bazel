@@ -1,0 +1,48 @@
+load("@rules_java//java:defs.bzl", "java_binary", "java_library", "java_test")
+
+package(default_visibility = ["//visibility:public"])
+
+java_library(
+    name = "java-maven-lib",
+    srcs = glob([
+        "src/main/java/org/daming/jobs/api/advice/*.java",
+        "src/main/java/org/daming/jobs/api/controller/*.java",
+        "src/main/java/org/daming/jobs/api/interceptor/*.java",
+        "src/main/java/org/daming/jobs/base/*.java",
+        "src/main/java/org/daming/jobs/base/**/*.java",
+        "src/main/java/org/daming/jobs/config/**/*.java",
+        "src/main/java/org/daming/jobs/pojo/**/*.java",
+        "src/main/java/org/daming/jobs/security/**/*.java",
+        "src/main/java/org/daming/jobs/service/**/*.java",
+        "src/main/java/org/daming/jobs/task/**/*.java",
+    ]),
+    deps = [
+        "@maven//:com_google_guava_guava",
+        "@maven//:org_springframework_boot_spring_boot_starter_web",
+        "@maven//:org_springframework_boot_spring_boot_starter_jdbc",
+        "@maven//:org_springframework_boot_spring_boot_starter_quartz",
+        "@maven//:org_springframework_boot_spring_boot_starter_aop",
+        "@maven//:io_springfox_springfox_boot_starter",
+        "@maven//:org_apache_shiro_shiro_spring_boot_starter",
+        "@maven//:com_auth0_java_jwt",
+        "@maven//:org_postgresql_postgresql",
+        "@maven//:org_springframework_boot_spring_boot_devtools",
+    ],
+)
+
+java_binary(
+    name = "java-maven",
+    main_class = "org.daming.jobs.JobsApplication",
+    runtime_deps = [":java-maven-lib"],
+)
+
+# java_test(
+#     name = "tests",
+#     srcs = glob(["src/test/java/com/example/myproject/*.java"]),
+#     test_class = "com.example.myproject.TestApp",
+#     deps = [
+#         ":java-maven-lib",
+#         "@maven//:com_google_guava_guava",
+#         "@maven//:junit_junit",
+#     ],
+# )
