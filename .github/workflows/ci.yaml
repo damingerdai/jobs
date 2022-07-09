@@ -74,5 +74,5 @@ jobs:
         run: npm install -g yarn
       - name: Build with vite
         run: cd ./src/main/react && yarn && yarn build
-      - name: Build with Gradle
+      - name: Build with bazel
         run: bazel run //:java-maven 
