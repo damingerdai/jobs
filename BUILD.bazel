@@ -17,7 +17,6 @@ java_library(
         "src/main/java/org/daming/jobs/task/**/*.java",
     ]),
     deps = [
-        "@maven//:com_google_guava_guava",
         "@maven//:org_springframework_boot_spring_boot_starter_web",
         "@maven//:org_springframework_boot_spring_boot_starter_jdbc",
         "@maven//:org_springframework_boot_spring_boot_starter_quartz",
