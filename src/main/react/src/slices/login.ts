@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { api } from '../service/api';
+import { api } from '../lib/api';
 
 export const fetchToken = createAsyncThunk('login/fetchToken', async (args: { username: string, password: string }, thunkApi) => {
 	const { username, password } = args;

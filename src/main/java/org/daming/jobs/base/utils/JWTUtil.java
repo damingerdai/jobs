@@ -12,7 +12,6 @@ import java.util.Date;
 /**
  * please use @org.daming.jobs.base.utils.JwtTool
  */
-@Deprecated
 public class JWTUtil {
 
     // 过期时间5分钟
@@ -24,6 +23,7 @@ public class JWTUtil {
      * @param secret 用户的密码
      * @return 是否正确
      */
+    @Deprecated
     public static boolean verify(String token, String username, String secret) {
         try {
             Algorithm algorithm = Algorithm.HMAC256(secret);
@@ -41,6 +41,7 @@ public class JWTUtil {
      * 获得token中的信息无需secret解密也能获得
      * @return token中包含的用户名
      */
+
     public static String getUsername(String token) {
         try {
             DecodedJWT jwt = JWT.decode(token);
@@ -56,6 +57,7 @@ public class JWTUtil {
      * @param secret 用户的密码
      * @return 加密的token
      */
+    @Deprecated
     public static String sign(String username, String secret) {
         Date date = new Date(System.currentTimeMillis() + EXPIRE_TIME);
         Algorithm algorithm = Algorithm.HMAC256(secret);

@@ -90,13 +90,32 @@ public class JWTFilter extends BasicHttpAuthenticationFilter {
      * 将非法请求跳转到 /401
      */
     private void response401(ServletRequest req, ServletResponse resp) {
-        System.out.println(((HttpServletRequest) req).getRequestURI() + "\t response401");
         try {
             HttpServletResponse httpServletResponse = (HttpServletResponse) resp;
-            httpServletResponse.sendRedirect("/401");
+            if (isAjax(req)) {
+                httpServletResponse.setCharacterEncoding("UTF-8");
+                httpServletResponse.setContentType("application/json");
+                // httpServletResponse.setStatus(401);
+                httpServletResponse.sendError(HttpServletResponse.SC_UNAUTHORIZED, "The token is not valid.");
+            } else {
+                httpServletResponse.sendRedirect("/401");
+            }
         } catch (IOException e) {
             LOGGER.error(e.getMessage());
         }
+    }
+
+    /**
+     * 判断是否是ajax请求
+     * @param request
+     * @return
+     */
+    private boolean isAjax(ServletRequest request) {
+        String header = ((HttpServletRequest) request).getHeader("X-Requested-With");
+        if ("XMLHttpRequest".equalsIgnoreCase(header)) {
+            return Boolean.TRUE;
+        }
+        return Boolean.FALSE;
     }
 
 }
