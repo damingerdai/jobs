@@ -1,16 +1,5 @@
-import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-import MenuIcon from '@mui/icons-material/Menu';
-import NotificationsIcon from '@mui/icons-material/Notifications';
-import Badge from '@mui/material/Badge';
-import Box from '@mui/material/Box';
-import CssBaseline from '@mui/material/CssBaseline';
-import Container from '@mui/material/Container';
-import Divider from '@mui/material/Divider';
-import IconButton from '@mui/material/IconButton';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-import List from '@mui/material/List';
+import CssBaseline from '@mui/material/CssBaseline';
 
 import { useState } from 'react';
 import { createRoot } from 'react-dom/client';
@@ -25,6 +14,7 @@ import { AppBar } from './components/appBar';
 import './styles.scss';
 import { mainListItems } from './components/items';
 import { PrimaryLayout } from './layout';
+import React from 'react';
 
 const App = () => {
 	const Theme = createTheme();
@@ -46,4 +36,9 @@ const App = () => {
 };
 const container = document.getElementById('root');
 const root = createRoot(container!);
-root.render(<App />);
+root.render(
+	<React.Fragment>
+		<CssBaseline />
+		<App />
+	</React.Fragment>
+);

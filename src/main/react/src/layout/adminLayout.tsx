@@ -20,7 +20,7 @@ import { Outlet } from 'react-router-dom';
 
 export const AdminLayout: React.FC = () => {
 	const { username } = useAppSelector(state => state.login);
-	const [open, setOpen] = useState(true);
+	const [open, setOpen] = useState<boolean>(false);
 	const toggleDrawer = () => {
 		setOpen(!open);
 	};
