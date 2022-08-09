@@ -7,6 +7,7 @@ import { UserMenu } from '@/components/userMenu';
 import { useAppSelector } from '@/slices/hook';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import MenuIcon from '@mui/icons-material/Menu';
+import { PaletteMode } from '@mui/material';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Divider from '@mui/material/Divider';
@@ -56,7 +57,7 @@ export const AdminLayout: React.FC = () => {
 					>
 						Job UI
 					</Typography>
-					<ThemeModePicker mode={mode} modeChange={setMode}/>
+					<ThemeModePicker mode={(mode || 'light') as PaletteMode} modeChange={setMode}/>
 					<UserMenu />
 				</Toolbar>
 			</AppBar>

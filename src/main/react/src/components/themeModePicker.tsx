@@ -5,11 +5,9 @@ import NightlightRoundedIcon from '@mui/icons-material/NightlightRounded';
 
 import React from 'react';
 
-import { ThemeMode } from '../types/theme';
-
 interface themeModePickerProps {
     mode: PaletteMode,
-    modeChange: (mode: ThemeMode) => void;
+    modeChange: (mode: PaletteMode) => void;
 }
 
 export const ThemeModePicker: React.FC<themeModePickerProps> = (props) => {
