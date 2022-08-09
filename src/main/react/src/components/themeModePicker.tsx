@@ -1,4 +1,5 @@
 import IconButton from '@mui/material/IconButton';
+import { PaletteMode } from '@mui/material';
 import LightModeRoundedIcon from '@mui/icons-material/LightModeRounded';
 import NightlightRoundedIcon from '@mui/icons-material/NightlightRounded';
 
@@ -7,7 +8,7 @@ import React from 'react';
 import { ThemeMode } from '../types/theme';
 
 interface themeModePickerProps {
-    mode: ThemeMode
+    mode: PaletteMode,
     modeChange: (mode: ThemeMode) => void;
 }
 
