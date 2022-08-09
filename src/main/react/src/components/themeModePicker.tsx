@@ -1,14 +1,13 @@
 import IconButton from '@mui/material/IconButton';
+import { PaletteMode } from '@mui/material';
 import LightModeRoundedIcon from '@mui/icons-material/LightModeRounded';
 import NightlightRoundedIcon from '@mui/icons-material/NightlightRounded';
 
 import React from 'react';
 
-import { ThemeMode } from '../types/theme';
-
 interface themeModePickerProps {
-    mode: ThemeMode
-    modeChange: (mode: ThemeMode) => void;
+    mode: PaletteMode,
+    modeChange: (mode: PaletteMode) => void;
 }
 
 export const ThemeModePicker: React.FC<themeModePickerProps> = (props) => {

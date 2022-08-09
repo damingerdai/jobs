@@ -16,13 +16,13 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useAppSelector } from '../slices/hook';
 import { RootState } from '../slices/store';
 import { toggleMode } from '../slices/theme';
-import { ThemeMode } from '../types/theme';
 import { ThemeModePicker } from './themeModePicker';
 import { setUsername } from '../slices/login';
+import { PaletteMode } from '@mui/material';
 
 interface NavbarProps {
 	brand: string;
-	toggleMode: (mode: ThemeMode) => void;
+	toggleMode: (mode: PaletteMode) => void;
 }
 
 const Navbar: React.FC<NavbarProps> = props => {
@@ -30,7 +30,7 @@ const Navbar: React.FC<NavbarProps> = props => {
 	const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 	const dropdownOpen = Boolean(anchorEl);
 	const navigate = useNavigate();
-	const mode = useSelector((state: RootState) => state.theme.mode) as ThemeMode;
+	const mode = useSelector((state: RootState) => state.theme.mode) as PaletteMode;
 	const dispatch = useDispatch();
 
 	useEffect(() => {

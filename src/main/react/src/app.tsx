@@ -1,35 +1,45 @@
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { Experimental_CssVarsProvider as CssVarsProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
-
-import { useState } from 'react';
+import { PaletteMode } from '@mui/material';
+import { useMemo, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
-
-import { Drawer } from './components/drawer';
 import { store } from './slices/store';
-
-import { Flex } from './components';
-import { AppBar } from './components/appBar';
-import './styles.scss';
-import { mainListItems } from './components/items';
 import { PrimaryLayout } from './layout';
 import React from 'react';
+import './styles.scss';
 
 const App = () => {
-	const Theme = createTheme();
-	const [open, setOpen] = useState(true);
-	const [theme, setTheme] = useState(Theme);
-	const toggleDrawer = () => {
-		setOpen(!open);
-	};
+	const [mode, setMode] = useState<PaletteMode>('light');
+	const colorMode = useMemo(
+		() => ({
+			// The dark mode switch would invoke this method
+			toggleColorMode: () => {
+				setMode((prevMode: PaletteMode) =>
+					prevMode === 'light' ? 'dark' : 'light'
+				);
+			}
+		}),
+		[]
+	);
+	const theme = React.useMemo(
+		() =>
+			createTheme({
+				palette: {
+					mode
+				}
+			}),
+		[mode]
+	);
 
 	return (
 		<BrowserRouter>
 			<Provider store={store}>
-				<ThemeProvider theme={theme}>
-					<PrimaryLayout/>
-				</ThemeProvider>
+				<CssVarsProvider>
+					<PrimaryLayout />
+				</CssVarsProvider>
 			</Provider>
 		</BrowserRouter>
 	);

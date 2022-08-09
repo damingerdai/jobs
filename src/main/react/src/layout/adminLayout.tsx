@@ -1,3 +1,4 @@
+import { ThemeModePicker } from '@/components';
 import { AppBar } from '@/components/appBar';
 import { Drawer } from '@/components/drawer';
 import { Flex } from '@/components/flex';
@@ -6,12 +7,13 @@ import { UserMenu } from '@/components/userMenu';
 import { useAppSelector } from '@/slices/hook';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import MenuIcon from '@mui/icons-material/Menu';
+import { PaletteMode } from '@mui/material';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
-import CssBaseline from '@mui/material/CssBaseline';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import List from '@mui/material/List';
+import { useColorScheme } from '@mui/material/styles';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import * as React from 'react';
@@ -20,6 +22,7 @@ import { Outlet } from 'react-router-dom';
 
 export const AdminLayout: React.FC = () => {
 	const { username } = useAppSelector(state => state.login);
+	const { mode, setMode } = useColorScheme();
 	const [open, setOpen] = useState<boolean>(false);
 	const toggleDrawer = () => {
 		setOpen(!open);
@@ -27,7 +30,6 @@ export const AdminLayout: React.FC = () => {
 
 	return (
 		<Flex>
-			<CssBaseline />
 			<AppBar position="absolute" open={open}>
 				<Toolbar
 					sx={{
@@ -55,6 +57,7 @@ export const AdminLayout: React.FC = () => {
 					>
 						Job UI
 					</Typography>
+					<ThemeModePicker mode={(mode || 'light') as PaletteMode} modeChange={setMode}/>
 					<UserMenu />
 				</Toolbar>
 			</AppBar>
