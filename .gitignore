@@ -37,3 +37,9 @@ build/
 out/
 src/main/resources/static
 logs
+
+### Bazel ###
+bazel-bin
+bazel-jobs
+bazel-out
+bazel-testlogs
