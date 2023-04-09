@@ -96,6 +96,11 @@
     <logger name="error.logger">
         <appender-ref ref="error.logger"/>
     </logger>
+
+    <logger name="api.logger">
+        <appender-ref ref="api.logger"/>
+    </logger>
+
     <logger name="api.logger">
         <appender-ref ref="api.logger"/>
     </logger>
