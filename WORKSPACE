@@ -26,18 +26,18 @@ load("@rules_jvm_external//:defs.bzl", "maven_install")
 
 maven_install(
     artifacts = [
-        "org.springframework.boot:spring-boot-starter-web:2.7.2",
-        "org.springframework.boot:spring-boot-starter-jdbc:2.7.2",
-        "org.springframework.boot:spring-boot-starter-quartz:2.7.2",
-        "org.springframework.boot:spring-boot-starter-aop:2.7.2",
+        "org.springframework.boot:spring-boot-starter-web:2.7.10",
+        "org.springframework.boot:spring-boot-starter-jdbc:2.7.10",
+        "org.springframework.boot:spring-boot-starter-quartz:2.7.10",
+        "org.springframework.boot:spring-boot-starter-aop:2.7.10",
 
         "io.springfox:springfox-boot-starter:3.0.0",
         "org.apache.shiro:shiro-spring-boot-starter:1.9.1",
         "com.auth0:java-jwt:3.18.2",
         "org.postgresql:postgresql:42.4.0",
 
-        "org.springframework.boot:spring-boot-devtools:2.7.2",
-        "org.springframework.boot:spring-boot-starter-test:2.7.2"
+        "org.springframework.boot:spring-boot-devtools:2.7.10",
+        "org.springframework.boot:spring-boot-starter-test:2.7.10"
          
     ],
      fetch_sources = True,
