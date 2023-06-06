@@ -5,7 +5,7 @@ import org.daming.jobs.config.service.IErrorCodeService;
 import org.daming.jobs.pojo.ApiError;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.PostConstruct;
+import jakarta.annotation.PostConstruct;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
