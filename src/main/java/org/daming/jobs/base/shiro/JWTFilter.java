@@ -1,15 +1,15 @@
 package org.daming.jobs.base.shiro;
 
+import jakarta.servlet.ServletRequest;
+import jakarta.servlet.ServletResponse;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import org.apache.shiro.web.filter.authc.BasicHttpAuthenticationFilter;
 import org.daming.jobs.base.logger.DamingLogger;
 import org.daming.jobs.base.logger.LoggerManager;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 

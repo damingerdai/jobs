@@ -1,8 +1,8 @@
 package org.daming.jobs.base.shiro;
 
+import jakarta.annotation.PostConstruct;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.PostConstruct;
 import java.util.HashMap;
 import java.util.Map;
 
