@@ -32,7 +32,7 @@ maven_install(
         "org.springframework.boot:spring-boot-starter-aop:2.7.12",
 
         "io.springfox:springfox-boot-starter:3.0.0",
-        "org.apache.shiro:shiro-spring-boot-starter:1.9.1",
+        "org.apache.shiro:shiro-spring-boot-starter:1.12.0",
         "com.auth0:java-jwt:3.19.4",
         "org.postgresql:postgresql:42.4.0",
 
