@@ -44,3 +44,4 @@ bazel-bin
 bazel-jobs
 bazel-out
 bazel-testlogs
+.bazelrc.user
