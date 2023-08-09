@@ -27,6 +27,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-quartz'
 	implementation 'org.springframework.boot:spring-boot-starter-aop'
 	implementation 'io.springfox:springfox-boot-starter:3.0.0'
+	implementation 'org.apache.shiro:shiro-spring-boot-starter:1.11.0:jakarta'
   	implementation('org.apache.shiro:shiro-spring:1.11.0:jakarta') { exclude group: 'org.apache.shiro', module: 'shiro-web' }
   	implementation 'org.apache.shiro:shiro-web:1.11.0:jakarta'
 

@@ -22,7 +22,48 @@ load("@rules_jvm_external//:setup.bzl", "rules_jvm_external_setup")
 
 # rules_jvm_external_setup()
 
+load("@rules_jvm_external//:specs.bzl", "maven")
 load("@rules_jvm_external//:defs.bzl", "maven_install")
+
+# for https://github.com/apache/shiro/issues/891
+shiros = [
+    maven.artifact(
+        group ="org.apache.shiro",
+        artifact = "shiro-spring-boot-web-starter",
+        classifier = "jakarta",
+        version = "1.11.0"
+    ),
+    maven.artifact(
+        group ="org.apache.shiro",
+        artifact = "shiro-spring-boot-starter",
+        classifier = "jakarta",
+        version = "1.11.0"
+    ),
+    maven.artifact(
+        group = "org.apache.shiro",
+        artifact = "shiro-core",
+        classifier = "jakarta",
+        version = "1.11.0",
+    ),
+    maven.artifact(
+        group = "org.apache.shiro",
+        artifact = "shiro-spring",
+        classifier = "jakarta",
+        version = "1.11.0",
+        exclusions = [
+             maven.exclusion(
+                    group = "javax.servlet",
+                    artifact = "javax.servlet-api"
+            ),
+        ]
+    ),
+    maven.artifact(
+        group = "org.apache.shiro",
+        artifact = "shiro-web",
+        classifier = "jakarta",
+        version ="1.11.0",
+    )
+]
 
 maven_install(
     artifacts = [
@@ -32,16 +73,17 @@ maven_install(
         "org.springframework.boot:spring-boot-starter-aop:3.0.0",
 
         "io.springfox:springfox-boot-starter:3.0.0",
-        "org.apache.shiro:shiro-spring-boot-starter:1.11.0",
-        "org.apache.shiro:shiro-jakarta-ee:1.11.0",
+        # "org.apache.shiro:shiro-spring-boot-starter:jakarta:1.11.0",
+        # "org.apache.shiro:shiro-spring:jakarta:1.11.0",
+        # "org.apache.shiro:shiro-web:jakarta:1.11.0",
         "com.auth0:java-jwt:3.19.4",
         "org.postgresql:postgresql:42.4.0",
 
         "org.springframework.boot:spring-boot-devtools:3.0.0",
         "org.springframework.boot:spring-boot-starter-test:3.0.0"
          
-    ],
-     fetch_sources = True,
+    ] + shiros,
+    fetch_sources = True,
     repositories = [
         "https://maven.aliyun.com/repository/public/",
         "https://maven.aliyun.com/nexus/content/groups/public/",
@@ -49,4 +91,7 @@ maven_install(
         "https://maven.google.com",
         "https://repo1.maven.org/maven2",
     ],
+    override_targets = {
+        "javax.servlet:javax.servlet-api": "jakarta.servlet:jakarta.servlet-api",
+    },
 )
