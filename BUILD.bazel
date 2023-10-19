@@ -61,7 +61,7 @@ java_library(
 )
 
 java_binary(
-    name = "java-maven",
+    name = "jobs",
     main_class = "org.daming.jobs.JobsApplication",
     runtime_deps = [":java-maven-lib"],
 )

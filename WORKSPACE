@@ -30,38 +30,36 @@ shiros = [
     maven.artifact(
         group ="org.apache.shiro",
         artifact = "shiro-spring-boot-web-starter",
-        classifier = "jakarta",
-        version = "1.11.0"
+        version = "1.12.0",
+        # classifier = "jakarta",
     ),
     maven.artifact(
         group ="org.apache.shiro",
         artifact = "shiro-spring-boot-starter",
+        version = "1.12.0",
         classifier = "jakarta",
-        version = "1.11.0"
-    ),
-    maven.artifact(
-        group = "org.apache.shiro",
-        artifact = "shiro-core",
-        classifier = "jakarta",
-        version = "1.11.0",
     ),
     maven.artifact(
         group = "org.apache.shiro",
         artifact = "shiro-spring",
+        version = "1.12.0",
         classifier = "jakarta",
-        version = "1.11.0",
         exclusions = [
-             maven.exclusion(
-                    group = "javax.servlet",
-                    artifact = "javax.servlet-api"
+            maven.exclusion(
+                  group = "javax.servlet",
+                  artifact = "*",
+            ),
+            maven.exclusion(
+                  group = "org.apache.shiro",
+                  artifact = "*",
             ),
         ]
     ),
     maven.artifact(
         group = "org.apache.shiro",
         artifact = "shiro-web",
+        version ="1.12.0",
         classifier = "jakarta",
-        version ="1.11.0",
     )
 ]
 
@@ -73,9 +71,6 @@ maven_install(
         "org.springframework.boot:spring-boot-starter-aop:3.0.0",
 
         "io.springfox:springfox-boot-starter:3.0.0",
-        # "org.apache.shiro:shiro-spring-boot-starter:jakarta:1.11.0",
-        # "org.apache.shiro:shiro-spring:jakarta:1.11.0",
-        # "org.apache.shiro:shiro-web:jakarta:1.11.0",
         "com.auth0:java-jwt:3.19.4",
         "org.postgresql:postgresql:42.4.0",
 
