@@ -1,2 +1,0 @@
-build --define=ABSOLUTE_JAVABASE='C:\Program Files\Java\jdk-17'
-server --server_javabase='C:\Program Files\Java\jdk-17'

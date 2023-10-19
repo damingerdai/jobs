@@ -75,4 +75,4 @@ jobs:
       - name: Build with vite
         run: cd ./src/main/react && yarn && yarn build
       - name: Build with bazel
-        run: bazel build //:java-maven 
+        run: bazel build //:jobs
