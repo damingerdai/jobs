@@ -43,7 +43,7 @@ shiros = [
         group = "org.apache.shiro",
         artifact = "shiro-spring",
         version = "1.12.0",
-        classifier = "jakarta",
+        # classifier = "jakarta",
         exclusions = [
             maven.exclusion(
                   group = "javax.servlet",
