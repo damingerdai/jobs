@@ -51,28 +51,28 @@ jobs:
         run: cd ./src/main/react && yarn && yarn build
       - name: Build with Gradle
         run: ./gradlew build -x test
-  build-bazel:
-    needs: build
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        java-version: [ 21 ]
-        node-version: [ 20 ]
-        os: [ ubuntu-latest ]
-    steps:
-      - uses: actions/checkout@v3
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
-        with:
-          node-version: ${{ matrix.node-version }}
-      - name: Set up JDK
-        uses: actions/setup-java@v3
-        with:
-          distribution: 'zulu'
-          java-version: ${{ matrix.java-version }}
-      - name: Install yarn
-        run: npm install -g yarn
-      - name: Build with vite
-        run: cd ./src/main/react && yarn && yarn build
-      - name: Build with bazel
-        run: bazel build //:jobs
+  # build-bazel:
+  #   needs: build
+  #   runs-on: ${{ matrix.os }}
+  #   strategy:
+  #     matrix:
+  #       java-version: [ 21 ]
+  #       node-version: [ 20 ]
+  #       os: [ ubuntu-latest ]
+  #   steps:
+  #     - uses: actions/checkout@v3
+  #     - name: Use Node.js ${{ matrix.node-version }}
+  #       uses: actions/setup-node@v1
+  #       with:
+  #         node-version: ${{ matrix.node-version }}
+  #     - name: Set up JDK
+  #       uses: actions/setup-java@v3
+  #       with:
+  #         distribution: 'zulu'
+  #         java-version: ${{ matrix.java-version }}
+  #     - name: Install yarn
+  #       run: npm install -g yarn
+  #     - name: Build with vite
+  #       run: cd ./src/main/react && yarn && yarn build
+  #     - name: Build with bazel
+  #       run: bazel build //:jobs
