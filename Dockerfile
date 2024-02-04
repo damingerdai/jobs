@@ -1,4 +1,4 @@
-FROM gradle:8.0.2-jdk17-alpine AS builder
+FROM gradle:8.6.0-jdk17-alpine AS builder
 COPY src /usr/src/app/src
 COPY *.gradle  /usr/src/app
 RUN gradle build -x test --project-dir  /usr/src/app
