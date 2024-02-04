@@ -28,36 +28,42 @@ load("@rules_jvm_external//:defs.bzl", "maven_install")
 # for https://github.com/apache/shiro/issues/891
 shiros = [
     maven.artifact(
-        group ="org.apache.shiro",
-        artifact = "shiro-spring-boot-web-starter",
-        version = "1.12.0",
-        # classifier = "jakarta",
-    ),
+         group ="org.apache.shiro",
+         artifact = "shiro-spring-boot-web-starter",
+         version = "1.12.0",
+         # classifier = "jakarta",
+     ),
     maven.artifact(
         group ="org.apache.shiro",
         artifact = "shiro-spring-boot-starter",
         version = "1.12.0",
-        classifier = "jakarta",
+        # classifier = "jakarta",
     ),
     maven.artifact(
         group = "org.apache.shiro",
         artifact = "shiro-spring",
         version = "1.12.0",
-        # classifier = "jakarta",
-        exclusions = [
-            maven.exclusion(
-                  group = "javax.servlet",
-                  artifact = "*",
-            ),
-            maven.exclusion(
-                  group = "org.apache.shiro",
-                  artifact = "*",
-            ),
-        ]
+        classifier = "jakarta",
+        # exclusions = [
+        #     maven.exclusion(
+        #           group = "javax.servlet",
+        #           artifact = "*",
+        #     ),
+        #     maven.exclusion(
+        #           group = "org.apache.shiro",
+        #           artifact = "*",
+        #     ),
+        # ]
     ),
     maven.artifact(
         group = "org.apache.shiro",
         artifact = "shiro-web",
+        version ="1.12.0",
+        classifier = "jakarta",
+    ),
+      maven.artifact(
+        group = "org.apache.shiro",
+        artifact = "shiro-core",
         version ="1.12.0",
         classifier = "jakarta",
     )
@@ -80,13 +86,13 @@ maven_install(
     ] + shiros,
     fetch_sources = True,
     repositories = [
-        "https://maven.aliyun.com/repository/public/",
-        "https://maven.aliyun.com/nexus/content/groups/public/",
+        # "https://maven.aliyun.com/repository/public/",
+        # "https://maven.aliyun.com/nexus/content/groups/public/",
         "http://uk.maven.org/maven2",
         "https://maven.google.com",
         "https://repo1.maven.org/maven2",
     ],
-    override_targets = {
-        "javax.servlet:javax.servlet-api": "jakarta.servlet:jakarta.servlet-api",
-    },
+    # override_targets = {
+    #     "javax.servlet:javax.servlet-api": "jakarta.servlet:jakarta.servlet-api",
+    # },
 )
