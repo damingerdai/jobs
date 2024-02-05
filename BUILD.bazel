@@ -41,7 +41,7 @@ java_library(
         "@maven//:org_springframework_spring_context",
         "@maven//:org_springframework_spring_web",
 
-        "@maven//:org_apache_shiro_shiro_spring_boot_starter",
+        # "@maven//:org_apache_shiro_shiro_spring_boot_starter",
         "@maven//:org_apache_shiro_shiro_core",
         "@maven//:org_apache_shiro_shiro_spring",
         "@maven//:org_apache_shiro_shiro_web",

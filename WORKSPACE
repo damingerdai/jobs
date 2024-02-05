@@ -27,46 +27,63 @@ load("@rules_jvm_external//:defs.bzl", "maven_install")
 
 # for https://github.com/apache/shiro/issues/891
 shiros = [
-    maven.artifact(
-         group ="org.apache.shiro",
-         artifact = "shiro-spring-boot-web-starter",
-         version = "1.12.0",
-         # classifier = "jakarta",
-     ),
-    maven.artifact(
-        group ="org.apache.shiro",
-        artifact = "shiro-spring-boot-starter",
-        version = "1.12.0",
-        # classifier = "jakarta",
-    ),
+    # maven.artifact(
+    #     group ="org.apache.shiro",
+    #     artifact = "shiro-spring-boot-web-starter",
+    #     version = "1.13.0",
+    #     exclusions = [
+    #         maven.exclusion(
+    #               group = "org.apache.shiro",
+    #               artifact = "shiro-core",
+    #         ),
+    #         maven.exclusion(
+    #               group = "org.apache.shiro",
+    #               artifact = "shiro-web",
+    #         ),
+    #     ],
+    #      #classifier = "jakarta",
+    #  ),
+    # maven.artifact(
+    #     group ="org.apache.shiro",
+    #     artifact = "shiro-spring-boot-starter",
+    #     version = "1.13.0",
+    #     #classifier = "jakarta",
+    # ),
     maven.artifact(
         group = "org.apache.shiro",
         artifact = "shiro-spring",
-        version = "1.12.0",
-        classifier = "jakarta",
+        version = "1.13.0",
+        #classifier = "jakarta",
         # exclusions = [
         #     maven.exclusion(
-        #           group = "javax.servlet",
-        #           artifact = "*",
+        #           group = "org.apache.shiro",
+        #           artifact = "shiro-core",
         #     ),
         #     maven.exclusion(
         #           group = "org.apache.shiro",
-        #           artifact = "*",
+        #           artifact = "shiro-web",
         #     ),
         # ]
     ),
     maven.artifact(
         group = "org.apache.shiro",
-        artifact = "shiro-web",
-        version ="1.12.0",
-        classifier = "jakarta",
-    ),
-      maven.artifact(
-        group = "org.apache.shiro",
         artifact = "shiro-core",
-        version ="1.12.0",
-        classifier = "jakarta",
-    )
+        version = "1.13.0",
+        #classifier = "jakarta",
+    ),
+    maven.artifact(
+        group = "org.apache.shiro",
+        artifact = "shiro-web",
+        version = "1.13.0",
+        #classifier = "jakarta",
+        # exclusions = [
+        #     maven.exclusion(
+        #           group = "org.apache.shiro",
+        #           artifact = "shiro-core",
+        #     ),
+        # ]
+    ),
+   
 ]
 
 maven_install(
