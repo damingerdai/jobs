@@ -5,6 +5,7 @@ package(default_visibility = ["//visibility:public"])
 java_library(
     name = "java-maven-lib",
     srcs = glob([
+        "src/main/java/org/daming/jobs/*.java",
         "src/main/java/org/daming/jobs/api/advice/*.java",
         "src/main/java/org/daming/jobs/api/controller/*.java",
         "src/main/java/org/daming/jobs/api/interceptor/*.java",
@@ -26,6 +27,7 @@ java_library(
         "@maven//:io_springfox_springfox_boot_starter",
         "@maven//:io_springfox_springfox_core",
         "@maven//:io_springfox_springfox_spi",
+        "@maven//:io_springfox_springfox_oas",
         "@maven//:io_springfox_springfox_spring_web",
         "@maven//:io_swagger_swagger_annotations",
 
@@ -42,9 +44,9 @@ java_library(
         "@maven//:org_springframework_spring_web",
 
         # "@maven//:org_apache_shiro_shiro_spring_boot_starter",
-        "@maven//:org_apache_shiro_shiro_core",
-        "@maven//:org_apache_shiro_shiro_spring",
-        "@maven//:org_apache_shiro_shiro_web",
+        "@maven//:org_apache_shiro_shiro_core_jakarta",
+        "@maven//:org_apache_shiro_shiro_spring_jakarta",
+        "@maven//:org_apache_shiro_shiro_web_jakarta",
 
         "@maven//:org_slf4j_slf4j_api",
 
@@ -64,6 +66,9 @@ java_binary(
     name = "jobs",
     main_class = "org.daming.jobs.JobsApplication",
     runtime_deps = [":java-maven-lib"],
+    deploy_manifest_lines = {
+        "Main-Class": "org.daming.jobs.JobsApplication",
+    },
 )
 
 # java_test(
