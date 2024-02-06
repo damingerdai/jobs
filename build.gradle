@@ -1,5 +1,5 @@
 plugins {
-	id 'org.springframework.boot' version '3.0.0'
+	id 'org.springframework.boot' version '3.2.2'
 	id 'io.spring.dependency-management' version '1.1.0'
 	id 'org.flywaydb.flyway' version '9.19.1'
 	id 'java'
@@ -33,12 +33,9 @@ dependencies {
 		exclude group: 'org.apache.shiro', module: 'shiro-web'
 	}
 	implementation 'org.apache.shiro:shiro-core:1.13.0:jakarta'
-	implementation 'org.apache.shiro:shiro-web:1.13.0:jakarta'
-	// implementation 'org.apache.shiro:shiro-spring-boot-starter:2.0.0-alpha-4:jakarta'
-	// implementation 'org.apache.shiro:shiro-spring-boot-web-starter:2.0.0-alpha-4:jakarta'
-	// implementation 'org.apache.shiro:shiro-spring:2.0.0-alpha-4:jakarta'
-	// implementation 'org.apache.shiro:shiro-web:2.0.0-alpha-4:jakarta'
-
+	implementation ('org.apache.shiro:shiro-web:1.13.0:jakarta') {
+		exclude group: 'org.apache.shiro', module: 'shiro-core'
+	}
 
 	implementation 'com.auth0:java-jwt:3.19.4'
 	implementation 'org.postgresql:postgresql'
