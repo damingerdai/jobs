@@ -81,6 +81,29 @@ yarn start
 open the [browser](http://localhost:3000/)
 ![login](https://raw.githubusercontent.com/damingerdai/jobs/master/screenshots/login.png)
 
+## bazel
+
+new manve install json
+
+```
+bazel run @maven//:pin 
+```
+
+update maven install json
+
+```
+bazel run @unpinned_maven//:pin
+```
+
+
+build and run
+
+```
+bazel build //:springboot
+
+bazel run //:springboot
+```
+
 ####  Swagger UI
 
 `jobs` support [swagger ui](http://127.0.0.1:8443/swagger-ui/index.html).
