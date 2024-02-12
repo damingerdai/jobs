@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import { api } from '../lib/api'
 import { ReposCommits } from '../types/respo'
+import { RequestStatus } from '@/types/request-status'
 
 export const fetchCommits = createAsyncThunk('repos/fetchCommits', async () => {
 	const url = '/api/v1/repos/commits'
@@ -13,10 +14,12 @@ export const fetchCommits = createAsyncThunk('repos/fetchCommits', async () => {
 })
 
 interface RepoState {
-	commits: ReposCommits
+	status: RequestStatus,
+	commits: ReposCommits,
 }
 
 const initialState: Partial<RepoState> = {
+	status: RequestStatus.IDLE,
 	commits: [],
 }
 
@@ -30,11 +33,25 @@ const reposSlice = createSlice({
 		},
 	},
 	extraReducers: builder => {
+		builder.addCase(fetchCommits.pending, (state) => {
+			state = {
+				...state,
+				status: RequestStatus.LOADING,
+			}
+		})
 		builder.addCase(fetchCommits.fulfilled, (state, { payload }) => {
-			state.commits = payload ?? []
+			state = {
+				...state,
+				commits: payload ?? [],
+				status: RequestStatus.SUCCEEDED,
+			}
 		})
 		builder.addCase(fetchCommits.rejected, (state, action) => {
-			console.error(state, action)
+			state = {
+				...state,
+				status: RequestStatus.FAILED,
+			}
+			console.error(state, action);
 		})
 	},
 })

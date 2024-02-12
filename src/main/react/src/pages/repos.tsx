@@ -12,10 +12,12 @@ import dayjs from 'dayjs';
 
 import { fetchCommits } from '../slices/repos';
 import { useAppDispatch, useAppSelector } from '../slices/hook';
+import { Box, CircularProgress } from '@mui/material';
+import { RequestStatus } from '@/types/request-status';
 
 const Repos = () => {
 	const dispatch = useAppDispatch();
-	const { commits } = useAppSelector(state => state.repos);
+	const { commits, status } = useAppSelector(state => state.repos);
 	useEffect(() => {
 		dispatch(fetchCommits());
 	}, [dispatch])
@@ -23,6 +25,7 @@ const Repos = () => {
 	return (
 		<Container component="div" maxWidth="lg">
 			<TableContainer component={Paper}>
+
 				<Table sx={{ minWidth: 650 }} aria-label="repos commits tables">
 					<TableHead>
 						<TableRow>
@@ -52,6 +55,9 @@ const Repos = () => {
 						))}
 					</TableBody>
 				</Table>
+				{status === RequestStatus.LOADING && (<Box sx={{ width: '100%', display: 'flex', margin: 1, justifyContent: 'center', alignItems: 'center' }}>
+					<CircularProgress />
+				</Box>)}
 			</TableContainer>
 		</Container>
 	)

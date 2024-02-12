@@ -1,4 +1,4 @@
-import { UserToken } from '../model/token';
+import { UserToken } from '../types/token';
 
 const inMemoryInitialState: any = localStorage.getItem('login')
 	? JSON.parse(localStorage.getItem('login') || '')

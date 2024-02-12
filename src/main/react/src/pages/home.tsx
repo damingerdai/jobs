@@ -15,7 +15,7 @@ import TableRow from '@mui/material/TableRow';
 import TextField from '@mui/material/TextField';
 import Paper from '@mui/material/Paper';
 
-import { IJob, Jobs } from '../model/job';
+import { IJob, Jobs } from '../types/job';
 import { useAppDispatch, useAppSelector } from '../slices/hook';
 import {
 	createJob,
@@ -51,7 +51,7 @@ const Home = () => {
 
 	return (
 		<Container component="main" maxWidth="lg">
-			<Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'end', marginY: "8px"}}>
+			<Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'end', marginY: "8px" }}>
 				<Button
 					variant="contained"
 					onClick={() => {
@@ -120,9 +120,17 @@ const Home = () => {
 						</Button>
 					</DialogActions>
 				</Dialog>
-				<Dialog open={confirm} onClose={() => setConfirm(false)}>
-					<DialogTitle>Delete job</DialogTitle>
-					<DialogContent>Are your confirm?</DialogContent>
+				<Dialog
+					open={confirm}
+					sx={{ '& .MuiDialog-paper': { width: '300px', maxHeight: 435 } }}
+					// fullWidth={true}
+					maxWidth="md"
+					onClose={() => setConfirm(false)}
+					aria-labelledby="alert-dialog-title"
+					aria-describedby="alert-dialog-description"
+				>
+					<DialogTitle id="alert-dialog-title">Delete job</DialogTitle>
+					<DialogContent id="alert-dialog-description">Are your confirm?</DialogContent>
 					<DialogActions>
 						<Button onClick={() => setConfirm(false)}>Cancel</Button>
 						<Button color="secondary" onClick={doDeleteJob}>
@@ -146,7 +154,7 @@ const Home = () => {
 						</TableRow>
 					</TableHead>
 					<TableBody>
-						{list?.map((j, i) => (
+						{list?.map((j: IJob, i: number) => (
 							<TableRow
 								key={j.name + j.group}
 								sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
@@ -161,38 +169,40 @@ const Home = () => {
 								<TableCell align="left">{j.state}</TableCell>
 								<TableCell align="left">{j.timezone}</TableCell>
 								<TableCell align="left">
-									{j.state === 'NORMAL' && (
+									<Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+										{j.state === 'NORMAL' && (
+											<Button
+												variant="contained"
+												color="warning"
+												onClick={() => {
+													dispatch(pauseJob(j));
+												}}
+											>
+												Pause
+											</Button>
+										)}
+										{j.state === 'PAUSED' && (
+											<Button
+												variant="contained"
+												color="secondary"
+												onClick={() => {
+													dispatch(resumeJob(j));
+												}}
+											>
+												Resume
+											</Button>
+										)}
 										<Button
 											variant="contained"
-											color="warning"
+											color="error"
 											onClick={() => {
-												dispatch(pauseJob(j));
+												setConfirm(true);
+												setJob(job);
 											}}
 										>
-											Pause
+											Delete
 										</Button>
-									)}
-									{j.state === 'PAUSED' && (
-										<Button
-											variant="contained"
-											color="secondary"
-											onClick={() => {
-												dispatch(resumeJob(j));
-											}}
-										>
-											Resume
-										</Button>
-									)}
-									<Button
-										variant="contained"
-										color="error"
-										onClick={() => {
-											setConfirm(true);
-											setJob(job);
-										}}
-									>
-										Delete
-									</Button>
+									</Box>
 								</TableCell>
 							</TableRow>
 						))}

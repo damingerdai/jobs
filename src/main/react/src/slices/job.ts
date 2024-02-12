@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { IJob, Jobs } from '../model/job';
+import { IJob, Jobs } from '../types/job';
 import { api } from '../lib/api';
 
 export const fetchJobs = createAsyncThunk('job/fetchJobs', async () => {
