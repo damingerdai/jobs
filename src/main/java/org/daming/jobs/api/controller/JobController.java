@@ -1,7 +1,7 @@
 package org.daming.jobs.api.controller;
 
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.daming.jobs.pojo.JobInfo;
 import org.daming.jobs.pojo.request.AddJobRequest;
 import org.daming.jobs.pojo.request.DeleteJobRequest;
@@ -23,12 +23,12 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/v1")
-@Api(tags = "Jobs Controller")
+@Tag(name = "Jobs Controller")
 public class JobController {
 
     private IQuartzService quartzService;
 
-    @ApiOperation(value = "add job api", notes = "add a quartz job detail")
+    @Operation(summary = "add job api", description = "add a quartz job detail")
     @PostMapping(path = "/job")
     public ResponseEntity<Boolean> addJob(@RequestBody AddJobRequest request) {
         try {
@@ -39,7 +39,7 @@ public class JobController {
         }
     }
 
-    @ApiOperation(value = "list job api", notes = "list all quartz job detail")
+    @Operation(summary= "list job api", description = "list all quartz job detail")
     @GetMapping(path = "/jobs")
     public ResponseEntity<List<JobInfo>> listJobs() {
         try {
@@ -50,7 +50,7 @@ public class JobController {
         }
     }
 
-    @ApiOperation(value = "delete job api", notes = "delete a quartz job detail")
+    @Operation(summary = "delete job api", description = "delete a quartz job detail")
     @DeleteMapping(path = "/job")
     public  ResponseEntity<Boolean> deleteJob(@RequestBody DeleteJobRequest request) {
         try {
@@ -63,7 +63,7 @@ public class JobController {
 
     }
 
-    @ApiOperation(value = "get job api", notes = "fetch a quartz job detail")
+    @Operation(summary = "get job api", description = "fetch a quartz job detail")
     @GetMapping(path = "/job")
     public ResponseEntity<JobInfo> getJob(@RequestParam String job, @RequestParam String group) {
         try {
@@ -74,7 +74,7 @@ public class JobController {
         }
     }
 
-    @ApiOperation(value = "pause job api", notes = "pause a quartz job")
+    @Operation(summary = "pause job api", description = "pause a quartz job")
     @PutMapping(path = "/job/pause")
     public ResponseEntity<Boolean> pauseJob(@RequestBody PauseResumeJobRequest request) {
         try {
@@ -87,7 +87,7 @@ public class JobController {
         }
     }
 
-    @ApiOperation(value = "resume job api", notes = "resume a quartz job")
+    @Operation(summary = "resume job api", description = "resume a quartz job")
     @PutMapping(path = "/job/resume")
     public ResponseEntity<Boolean> resumeJob(@RequestBody PauseResumeJobRequest request) {
         try {

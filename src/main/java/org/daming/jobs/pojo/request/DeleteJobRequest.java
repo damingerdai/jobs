@@ -1,22 +1,21 @@
 package org.daming.jobs.pojo.request;
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.StringJoiner;
 
-@ApiModel("delete job request")
+@Schema(name = "delete job request")
 public class DeleteJobRequest implements Serializable  {
 
     @Serial
     private static final long serialVersionUID = -119673591373760086L;
 
-    @ApiModelProperty(name = "jod name", dataType = "String", required = true, example="job1")
+    @Schema(name = "jod name", type = "string", required = true, example="job1")
     private String name;
 
-    @ApiModelProperty(name = "group name", dataType = "String", required = true, example="group1")
+    @Schema(name = "group name", type = "string", required = true, example="group1")
     private String group;
 
     public String getName() {

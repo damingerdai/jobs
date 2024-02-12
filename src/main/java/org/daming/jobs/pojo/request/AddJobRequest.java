@@ -1,21 +1,19 @@
 package org.daming.jobs.pojo.request;
 
-
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 import java.io.Serializable;
 
-@ApiModel("add job request")
+@Schema(name = "add job request")
 public class AddJobRequest implements Serializable {
 
-    @ApiModelProperty(name = "jod name", dataType = "String", required = true, example="job1")
+    @Schema(name = "jod name", type = "string", required = true, example="job1")
     private String name;
 
-    @ApiModelProperty(name = "group name", dataType = "String", required = true, example="group1")
+    @Schema(name = "group name", type = "string", required = true, example="group1")
     private String group;
 
-    @ApiModelProperty(name = "job cron name", dataType = "String", required = true, example = "*/5 * * * * ?")
+    @Schema(name = "job cron name", type = "string", required = true, example = "*/5 * * * * ?")
     private String cron;
 
     public String getName() {

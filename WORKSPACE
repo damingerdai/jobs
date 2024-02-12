@@ -81,7 +81,11 @@ maven_install(
 
         #"org.springframework.boot:spring-boot-configuration-processor:3.2.2",
 
-        "io.springfox:springfox-boot-starter:3.0.0",
+        "org.springdoc:springdoc-openapi-starter-webmvc-ui:2.3.0",
+        # "io.swagger.core.v3:swagger-annotations:2.2.9:jakarta",
+        # "io.swagger.core.v3:swagger-core:2.2.9:jakarta",
+        # "io.swagger.core.v3:swagger-modules:2.2.9:jakarta",
+
         "com.auth0:java-jwt:3.19.4",
         "org.postgresql:postgresql:42.4.0",
 

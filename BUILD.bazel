@@ -25,12 +25,9 @@ java_library(
         "@maven//:org_springframework_boot_spring_boot_starter_quartz",
         "@maven//:org_springframework_boot_spring_boot_starter_aop",
 
-        "@maven//:io_springfox_springfox_boot_starter",
-        "@maven//:io_springfox_springfox_core",
-        "@maven//:io_springfox_springfox_spi",
-        "@maven//:io_springfox_springfox_oas",
-        "@maven//:io_springfox_springfox_spring_web",
-        "@maven//:io_swagger_swagger_annotations",
+        "@maven//:io_swagger_core_v3_swagger_core_jakarta",
+        "@maven//:io_swagger_core_v3_swagger_annotations_jakarta",
+        "@maven//:io_swagger_core_v3_swagger_models_jakarta",
 
         "@maven//:com_auth0_java_jwt",
         "@maven//:org_postgresql_postgresql",
@@ -65,17 +62,17 @@ java_library(
     ],
 )
 
-java_binary(
-    name = "jobs",
-    main_class = "org.daming.jobs.JobsApplication",
-    runtime_deps = [":jobs-lib"],
-    deploy_manifest_lines = {
-        "Main-Class": "org.daming.jobs.JobsApplication",
-    },
-)
+# java_binary(
+#     name = "jobs",
+#     main_class = "org.daming.jobs.JobsApplication",
+#     runtime_deps = [":jobs-lib"],
+#     deploy_manifest_lines = {
+#         "Main-Class": "org.daming.jobs.JobsApplication",
+#     },
+# )
 
 springboot(  
-    name = "springboot",  
+    name = "jobs",  
     # specify the main class
     boot_app_class = "org.daming.jobs.JobsApplication",
     # refrence the library

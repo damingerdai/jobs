@@ -26,7 +26,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
 	implementation 'org.springframework.boot:spring-boot-starter-quartz'
 	implementation 'org.springframework.boot:spring-boot-starter-aop'
-	implementation 'io.springfox:springfox-boot-starter:3.0.0'
+	implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.3.0'
 	implementation 'org.apache.shiro:shiro-spring-boot-web-starter:1.13.0'
 	implementation('org.apache.shiro:shiro-spring:1.13.0:jakarta') {
 		exclude group: 'org.apache.shiro', module: 'shiro-core'
