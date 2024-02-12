@@ -51,7 +51,7 @@ const Home = () => {
 
 	return (
 		<Container component="main" maxWidth="lg">
-			<Box paddingTop="20px">
+			<Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'end', marginY: "8px"}}>
 				<Button
 					variant="contained"
 					onClick={() => {
