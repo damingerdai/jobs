@@ -11,7 +11,7 @@ import { PrimaryLayout } from './layout';
 import React from 'react';
 import './styles.scss';
 
-const App = () => {
+export const App: React.FC = () => {
 	const [mode, setMode] = useState<PaletteMode>('light');
 	const colorMode = useMemo(
 		() => ({
@@ -44,6 +44,7 @@ const App = () => {
 		</BrowserRouter>
 	);
 };
+
 const container = document.getElementById('root');
 const root = createRoot(container!);
 root.render(

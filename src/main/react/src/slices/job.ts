@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { IJob, Jobs } from '../types/job';
+import { RequestStatus } from '../types/request-status';
 import { api } from '../lib/api';
 
 export const fetchJobs = createAsyncThunk('job/fetchJobs', async () => {
@@ -32,10 +33,12 @@ export const resumeJob = createAsyncThunk('job/resumeJob', async (args: IJob) =>
 });
 
 interface JobState {
-    list: Jobs;
+	status: RequestStatus,
+	list: Jobs;
 }
 
-const initialState: Partial<JobState>= {
+const initialState: Partial<JobState> = {
+	status: RequestStatus.IDLE,
 	list: []
 }
 
@@ -49,11 +52,16 @@ const jobSlice = createSlice({
 		}
 	},
 	extraReducers: builder => {
+		builder.addCase(fetchJobs.pending, (state) => {
+			state.status = RequestStatus.LOADING;
+		})
 		builder.addCase(fetchJobs.fulfilled, (state, action) => {
-			state.list = action.payload as Jobs ?? []
+			state.list = action.payload as Jobs ?? [];
+			state.status = RequestStatus.SUCCEEDED;
 		})
 		builder.addCase(fetchJobs.rejected, (state, action) => {
-			console.error(state, action)
+			console.error(state, action);
+			state.status = RequestStatus.FAILED;
 		})
 		builder.addCase(createJob.fulfilled, (state, action) => {
 			state.list = action.payload as Jobs ?? []

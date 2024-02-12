@@ -15,7 +15,8 @@ import TableRow from '@mui/material/TableRow';
 import TextField from '@mui/material/TextField';
 import Paper from '@mui/material/Paper';
 
-import { IJob, Jobs } from '../types/job';
+import { IJob } from '../types/job';
+import { RequestStatus } from '../types/request-status';
 import { useAppDispatch, useAppSelector } from '../slices/hook';
 import {
 	createJob,
@@ -24,6 +25,7 @@ import {
 	pauseJob,
 	resumeJob
 } from '../slices/job';
+import CircularProgress from '@mui/material/CircularProgress';
 
 const Home = () => {
 	const dispatch = useAppDispatch();
@@ -31,7 +33,7 @@ const Home = () => {
 	const [open, setOpen] = useState(false);
 	const [confirm, setConfirm] = useState(false);
 	// const [jobs, setJobs] = useState([] as Jobs);
-	const { list } = useAppSelector(state => state.job as { list: Jobs });
+	const { list, status } = useAppSelector(state => state.job);
 
 	useEffect(() => {
 		dispatch(fetchJobs());
@@ -208,6 +210,9 @@ const Home = () => {
 						))}
 					</TableBody>
 				</Table>
+				{status === RequestStatus.LOADING && (<Box sx={{ width: '100%', display: 'flex', margin: 1, justifyContent: 'center', alignItems: 'center' }}>
+					<CircularProgress />
+				</Box>)}
 			</TableContainer>
 		</Container>
 	);

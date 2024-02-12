@@ -1,6 +1,6 @@
 import { UserToken } from '../types/token';
 
-const inMemoryInitialState: any = localStorage.getItem('login')
+const inMemoryInitialState: any = (typeof window !== 'undefined' && localStorage.getItem('login'))
 	? JSON.parse(localStorage.getItem('login') || '')
 	: {};
 

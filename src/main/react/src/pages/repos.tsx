@@ -1,5 +1,8 @@
-import React, { useEffect } from 'react';
+import * as React from 'react';
+import { useEffect } from 'react';
 
+import Box from '@mui/material/Box';
+import CircularProgress from '@mui/material/CircularProgress';
 import Container from '@mui/material/Container';
 import TableContainer from '@mui/material/TableContainer';
 import Table from '@mui/material/Table';
@@ -12,8 +15,8 @@ import dayjs from 'dayjs';
 
 import { fetchCommits } from '../slices/repos';
 import { useAppDispatch, useAppSelector } from '../slices/hook';
-import { Box, CircularProgress } from '@mui/material';
-import { RequestStatus } from '@/types/request-status';
+import { RequestStatus } from '../types/request-status';
+
 
 const Repos = () => {
 	const dispatch = useAppDispatch();
