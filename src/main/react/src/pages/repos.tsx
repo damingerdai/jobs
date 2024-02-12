@@ -8,6 +8,7 @@ import TableCell from '@mui/material/TableCell';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import dayjs from 'dayjs';
 
 import { fetchCommits } from '../slices/repos';
 import { useAppDispatch, useAppSelector } from '../slices/hook';
@@ -46,7 +47,7 @@ const Repos = () => {
 								<TableCell align="left">{commit.author.name}</TableCell>
 								<TableCell align="left">{commit.committer.name}</TableCell>
 								<TableCell align="left">{commit.sha}</TableCell>
-								<TableCell align="left">{commit.author.date}</TableCell>
+								<TableCell align="left">{dayjs(commit.author.date).format('MM/DD/YYYY HH:mm:ss')}</TableCell>
 							</TableRow>
 						))}
 					</TableBody>
