@@ -14,7 +14,6 @@ import java.net.http.HttpResponse;
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
-import java.security.cert.X509Certificate;
 import java.time.Duration;
 
 @Service
@@ -25,32 +24,31 @@ public class RepoServiceImpl implements IRepoService {
         var url = "https://api.github.com/repos/damingerdai/jobs/commits";
         SSLContext sslContext = SSLContext.getInstance("TLS");
         sslContext.init(null, getTrustAllCerts(), new SecureRandom());
-        try (var client = HttpClient
+        var client = HttpClient
                 .newBuilder()
                 .sslContext(sslContext)
-                .build()){
-            var request = HttpRequest.newBuilder()
-                    .uri(URI.create(url))
-                    .timeout(Duration.ofMinutes(1))
-                    .GET()
-                    .timeout(Duration.ofMinutes(1))
-                    .build();
-            var response = client.send(request, HttpResponse.BodyHandlers.ofString());
-            return response.body();
-        }
+                .build();;
+        var request = HttpRequest.newBuilder()
+                .uri(URI.create(url))
+                .timeout(Duration.ofMinutes(1))
+                .GET()
+                .timeout(Duration.ofMinutes(1))
+                .build();
+        var response = client.send(request, HttpResponse.BodyHandlers.ofString());
+        return response.body();
     }
 
     private  TrustManager[] getTrustAllCerts() {
         return new TrustManager[]{
                 new X509TrustManager() {
-                    public X509Certificate[] getAcceptedIssuers() {
+                    public java.security.cert.X509Certificate[] getAcceptedIssuers() {
                         return null;
                     }
                     public void checkClientTrusted(
-                            X509Certificate[] certs, String authType) {
+                            java.security.cert.X509Certificate[] certs, String authType) {
                     }
                     public void checkServerTrusted(
-                           X509Certificate[] certs, String authType) {
+                            java.security.cert.X509Certificate[] certs, String authType) {
                     }
                 }
         };
