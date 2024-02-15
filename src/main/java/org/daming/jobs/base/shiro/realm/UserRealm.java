@@ -11,9 +11,9 @@ import org.apache.shiro.subject.PrincipalCollection;
 import org.daming.jobs.base.logger.DamingLogger;
 import org.daming.jobs.base.logger.LoggerManager;
 import org.daming.jobs.base.shiro.JWTToken;
-import org.daming.jobs.base.shiro.ShiroUserService;
 import org.daming.jobs.base.shiro.UserBean;
 import org.daming.jobs.base.utils.JWTUtil;
+import org.daming.jobs.service.IShiroUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,10 +26,10 @@ public class UserRealm  extends AuthorizingRealm {
 
     private  final DamingLogger LOGGER = LoggerManager.getLogger(UserRealm.class);
 
-    private ShiroUserService shiroUserService;
+    private IShiroUserService shiroUserService;
 
     @Autowired
-    public void setUserService(ShiroUserService shiroUserService) {
+    public void setUserService(IShiroUserService shiroUserService) {
         this.shiroUserService = shiroUserService;
     }
 

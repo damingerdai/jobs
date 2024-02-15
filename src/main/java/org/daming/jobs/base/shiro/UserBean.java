@@ -5,6 +5,8 @@ import java.util.StringJoiner;
 
 public class UserBean implements Serializable {
 
+    private long id;
+
     private String username;
 
     private String password;
@@ -12,6 +14,14 @@ public class UserBean implements Serializable {
     private String role;
 
     private String permission;
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 
     public String getUsername() {
         return username;
@@ -50,6 +60,7 @@ public class UserBean implements Serializable {
     }
 
     public UserBean(String username, String password, String role, String permission) {
+        super();
         this.username = username;
         this.password = password;
         this.role = role;
