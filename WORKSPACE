@@ -87,7 +87,7 @@ maven_install(
         # "io.swagger.core.v3:swagger-modules:2.2.9:jakarta",
 
         "com.auth0:java-jwt:3.19.4",
-        "org.postgresql:postgresql:42.4.0",
+        "org.postgresql:postgresql:42.7.4",
 
         "jakarta.servlet:jakarta.servlet-api:6.0.0",  
         'javax.annotation:javax.annotation-api:1.3.2',
